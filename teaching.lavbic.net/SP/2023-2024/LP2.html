@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Poglavje 12 2. LP Decentralizirana aplikacija na verigi blokov | Spletno programiranje 2023/2024</title>
+  <meta name="description" content="Skripta za pomoč pri predmetu Spletno programiranje 2022/2023" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Poglavje 12 2. LP Decentralizirana aplikacija na verigi blokov | Spletno programiranje 2023/2024" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Skripta za pomoč pri predmetu Spletno programiranje 2022/2023" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Poglavje 12 2. LP Decentralizirana aplikacija na verigi blokov | Spletno programiranje 2023/2024" />
+  
+  <meta name="twitter:description" content="Skripta za pomoč pri predmetu Spletno programiranje 2022/2023" />
+  
+
+<meta name="author" content="izr. prof. dr. Dejan Lavbič" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="DApps-pametne-pogodbe.html"/>
+<link rel="next" href="Truffle-Web3.html"/>
+<script src="assets/lib/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="assets/lib/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="assets/lib/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="assets/lib/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="assets/lib/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="assets/lib/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="assets/lib/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="assets/lib/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="assets/lib/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="assets/lib/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="assets/lib/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="assets/lib/kePrint-0.0.1/kePrint.js"></script>
+<link href="assets/lib/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="assets/style/stil.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="index.html#terminski-plan-izvajanja-predmeta">SP 2023/2024 terminski plan</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Uvod</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#splošne-informacije"><i class="fa fa-check"></i>Splošne informacije</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#predavatelj"><i class="fa fa-check"></i>Predavatelj</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#asistent"><i class="fa fa-check"></i>Asistent</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#terminski-plan-izvajanja-predmeta"><i class="fa fa-check"></i>Terminski plan izvajanja predmeta</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#pravila-igre"><i class="fa fa-check"></i>Pravila igre</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#predavanja"><i class="fa fa-check"></i>Predavanja</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#vaje"><i class="fa fa-check"></i>Vaje</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#ocenjevanje"><i class="fa fa-check"></i>Ocenjevanje</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#pisni-izpiti"><i class="fa fa-check"></i>Pisni izpiti</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#priporočena-literatura"><i class="fa fa-check"></i>Priporočena literatura</a></li>
+</ul></li>
+<li class="part"><span><b>I sklop: Uvod v spletno programiranje</b></span></li>
+<li class="chapter" data-level="1" data-path="P11.html"><a href="P11.html"><i class="fa fa-check"></i><b>1</b> <span class="sklop1 oznaka">P1.1</span> Svetovni splet in celostni razvoj programske opreme</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="P11.html"><a href="P11.html#infrastrukturni-in-arhitekturni-pogled-na-svetovni-splet"><i class="fa fa-check"></i><b>1.1</b> Infrastrukturni in arhitekturni pogled na svetovni splet</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="P11.html"><a href="P11.html#moorov-zakon"><i class="fa fa-check"></i><b>1.1.1</b> Moorov zakon</a></li>
+<li class="chapter" data-level="1.1.2" data-path="P11.html"><a href="P11.html#internet-vs.-svetovni-splet"><i class="fa fa-check"></i><b>1.1.2</b> Internet vs. (svetovni) splet</a></li>
+<li class="chapter" data-level="1.1.3" data-path="P11.html"><a href="P11.html#razvoj-interneta"><i class="fa fa-check"></i><b>1.1.3</b> Razvoj interneta</a></li>
+<li class="chapter" data-level="1.1.4" data-path="P11.html"><a href="P11.html#razvoj-WWW"><i class="fa fa-check"></i><b>1.1.4</b> Razvoj (svetovnega) spleta</a></li>
+<li class="chapter" data-level="1.1.5" data-path="P11.html"><a href="P11.html#arhitektura-odjemalecstrežnik"><i class="fa fa-check"></i><b>1.1.5</b> Arhitektura odjemalec/strežnik</a></li>
+<li class="chapter" data-level="1.1.6" data-path="P11.html"><a href="P11.html#večnivojska-arhitektura"><i class="fa fa-check"></i><b>1.1.6</b> Večnivojska arhitektura</a></li>
+<li class="chapter" data-level="1.1.7" data-path="P11.html"><a href="P11.html#pomembni-mejniki-in-akterji"><i class="fa fa-check"></i><b>1.1.7</b> Pomembni mejniki in akterji</a></li>
+<li class="chapter" data-level="1.1.8" data-path="P11.html"><a href="P11.html#trenutno-stanje-na-trgu"><i class="fa fa-check"></i><b>1.1.8</b> Trenutno stanje na trgu</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="P11.html"><a href="P11.html#uporabljen-pristop-pri-predmetu"><i class="fa fa-check"></i><b>1.2</b> Uporabljen pristop pri predmetu</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="P11.html"><a href="P11.html#tehnologije-ki-jih-bomo-uporabljali"><i class="fa fa-check"></i><b>1.2.1</b> Tehnologije, ki jih bomo uporabljali</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="P11.html"><a href="P11.html#celostni-razvoj-programske-opreme-z-mean-arhitekturo"><i class="fa fa-check"></i><b>1.3</b> Celostni razvoj programske opreme z MEAN arhitekturo</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="P11.html"><a href="P11.html#Node-js-niti"><i class="fa fa-check"></i><b>1.3.1</b> Node.js</a></li>
+<li class="chapter" data-level="1.3.2" data-path="P11.html"><a href="P11.html#express"><i class="fa fa-check"></i><b>1.3.2</b> Express</a></li>
+<li class="chapter" data-level="1.3.3" data-path="P11.html"><a href="P11.html#MongoDB-uvod"><i class="fa fa-check"></i><b>1.3.3</b> MongoDB</a></li>
+<li class="chapter" data-level="1.3.4" data-path="P11.html"><a href="P11.html#angular"><i class="fa fa-check"></i><b>1.3.4</b> Angular</a></li>
+<li class="chapter" data-level="1.3.5" data-path="P11.html"><a href="P11.html#podporna-orodja-ogrodja-in-knjižnice"><i class="fa fa-check"></i><b>1.3.5</b> Podporna orodja, ogrodja in knjižnice</a></li>
+<li class="chapter" data-level="1.3.6" data-path="P11.html"><a href="P11.html#git"><i class="fa fa-check"></i><b>1.3.6</b> Git</a></li>
+<li class="chapter" data-level="1.3.7" data-path="P11.html"><a href="P11.html#heroku"><i class="fa fa-check"></i><b>1.3.7</b> Heroku</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="P11.html"><a href="P11.html#razvoj-dejanske-aplikacije"><i class="fa fa-check"></i><b>1.4</b> Razvoj dejanske aplikacije</a></li>
+<li class="chapter" data-level="1.5" data-path="P11.html"><a href="P11.html#nacrtovanje-aplikacije-po-mean-arhitekturi"><i class="fa fa-check"></i><b>1.5</b> Načrtovanje aplikacije po MEAN arhitekturi</a></li>
+<li class="chapter" data-level="1.6" data-path="P11.html"><a href="P11.html#dobre-prakse-pri-načrtovanju-in-implementaciji-aplikacije"><i class="fa fa-check"></i><b>1.6</b> Dobre prakse pri načrtovanju in implementaciji aplikacije</a>
+<ul>
+<li class="chapter" data-level="1.6.1" data-path="P11.html"><a href="P11.html#uporaba-api-ja-za-dostop-do-podatkovne-ravni"><i class="fa fa-check"></i><b>1.6.1</b> Uporaba API-ja za dostop do podatkovne ravni</a></li>
+<li class="chapter" data-level="1.6.2" data-path="P11.html"><a href="P11.html#koraki-pri-nacrtovanju-nove-spletne-aplikacije"><i class="fa fa-check"></i><b>1.6.2</b> Koraki pri načrtovanju nove spletne aplikacije</a></li>
+<li class="chapter" data-level="1.6.3" data-path="P11.html"><a href="P11.html#koraki-pri-implementaciji-nove-spletne-aplikacije"><i class="fa fa-check"></i><b>1.6.3</b> Koraki pri implementaciji nove spletne aplikacije</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="P11.html"><a href="P11.html#okolje"><i class="fa fa-check"></i><b>1.7</b> Okolje</a>
+<ul>
+<li class="chapter" data-level="1.7.1" data-path="P11.html"><a href="P11.html#razvojno-okolje"><i class="fa fa-check"></i><b>1.7.1</b> Razvojno okolje</a></li>
+<li class="chapter" data-level="1.7.2" data-path="P11.html"><a href="P11.html#produkcijsko-okolje"><i class="fa fa-check"></i><b>1.7.2</b> Produkcijsko okolje</a></li>
+</ul></li>
+<li class="chapter" data-level="1.8" data-path="P11.html"><a href="P11.html#git-1"><i class="fa fa-check"></i><b>1.8</b> Git</a>
+<ul>
+<li class="chapter" data-level="1.8.1" data-path="P11.html"><a href="P11.html#osnovne-operacije-vcs"><i class="fa fa-check"></i><b>1.8.1</b> Osnovne operacije VCS</a></li>
+<li class="chapter" data-level="1.8.2" data-path="P11.html"><a href="P11.html#posebnosti-porazdeljenih-sistemov-za-obvladovanje-verzij-dvcs"><i class="fa fa-check"></i><b>1.8.2</b> Posebnosti porazdeljenih sistemov za obvladovanje verzij (DVCS)</a></li>
+<li class="chapter" data-level="1.8.3" data-path="P11.html"><a href="P11.html#dobre-prakse-uporabe-git"><i class="fa fa-check"></i><b>1.8.3</b> Dobre prakse uporabe Git</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="LP1.html"><a href="LP1.html"><i class="fa fa-check"></i><b>2</b> <span class="sklop4 oznaka">1. LP</span> Dinamična spletna aplikacija na strani strežnika in odjemalca</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="LP1.html"><a href="LP1.html#pravila-zahteve-in-omejitve"><i class="fa fa-check"></i><b>2.1</b> Pravila, zahteve in omejitve</a></li>
+<li class="chapter" data-level="2.2" data-path="LP1.html"><a href="LP1.html#LP11"><i class="fa fa-check"></i><b>2.2</b> <span class="sklop1 oznaka">1. del</span> Osnutek aplikacije in wireframe model</a></li>
+<li class="chapter" data-level="2.3" data-path="LP1.html"><a href="LP1.html#LP12"><i class="fa fa-check"></i><b>2.3</b> <span class="sklop2 oznaka">2. del</span> Arhitektura aplikacije in različna razvojna okolja</a></li>
+<li class="chapter" data-level="2.4" data-path="LP1.html"><a href="LP1.html#LP13"><i class="fa fa-check"></i><b>2.4</b> <span class="sklop3 oznaka">3. del</span> Zaledni del in dostop do podatkovne baze</a></li>
+<li class="chapter" data-level="2.5" data-path="LP1.html"><a href="LP1.html#LP14"><i class="fa fa-check"></i><b>2.5</b> <span class="sklop4 oznaka">4. del</span> Uporabniški vmesnik, SPA in avtentikacija</a></li>
+<li class="chapter" data-level="2.6" data-path="LP1.html"><a href="LP1.html#kriteriji-vrednotenja"><i class="fa fa-check"></i><b>2.6</b> Kriteriji vrednotenja</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="HTML-CSS.html"><a href="HTML-CSS.html"><i class="fa fa-check"></i><b>3</b> <span class="sklop1 oznaka">P1.2</span> Osnovna spletna standarda HTML in CSS</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="HTML-CSS.html"><a href="HTML-CSS.html#html-tehnologija"><i class="fa fa-check"></i><b>3.1</b> HTML</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="HTML-CSS.html"><a href="HTML-CSS.html#enostaven-primer-html5-dokumenta"><i class="fa fa-check"></i><b>3.1.1</b> Enostaven primer HTML5 dokumenta</a></li>
+<li class="chapter" data-level="3.1.2" data-path="HTML-CSS.html"><a href="HTML-CSS.html#ustreznost-html5-dokumenta"><i class="fa fa-check"></i><b>3.1.2</b> Ustreznost HTML5 dokumenta</a></li>
+<li class="chapter" data-level="3.1.3" data-path="HTML-CSS.html"><a href="HTML-CSS.html#naslovi"><i class="fa fa-check"></i><b>3.1.3</b> Naslovi</a></li>
+<li class="chapter" data-level="3.1.4" data-path="HTML-CSS.html"><a href="HTML-CSS.html#povezave"><i class="fa fa-check"></i><b>3.1.4</b> Povezave</a></li>
+<li class="chapter" data-level="3.1.5" data-path="HTML-CSS.html"><a href="HTML-CSS.html#slike"><i class="fa fa-check"></i><b>3.1.5</b> Slike</a></li>
+<li class="chapter" data-level="3.1.6" data-path="HTML-CSS.html"><a href="HTML-CSS.html#posebni-znaki-in-vodoravne-črte"><i class="fa fa-check"></i><b>3.1.6</b> Posebni znaki in vodoravne črte</a></li>
+<li class="chapter" data-level="3.1.7" data-path="HTML-CSS.html"><a href="HTML-CSS.html#seznami"><i class="fa fa-check"></i><b>3.1.7</b> Seznami</a></li>
+<li class="chapter" data-level="3.1.8" data-path="HTML-CSS.html"><a href="HTML-CSS.html#tabele"><i class="fa fa-check"></i><b>3.1.8</b> Tabele</a></li>
+<li class="chapter" data-level="3.1.9" data-path="HTML-CSS.html"><a href="HTML-CSS.html#Spletni-obrazci-HTML"><i class="fa fa-check"></i><b>3.1.9</b> Spletni obrazci</a></li>
+<li class="chapter" data-level="3.1.10" data-path="HTML-CSS.html"><a href="HTML-CSS.html#interne-povezave"><i class="fa fa-check"></i><b>3.1.10</b> Interne povezave</a></li>
+<li class="chapter" data-level="3.1.11" data-path="HTML-CSS.html"><a href="HTML-CSS.html#meta-elementi"><i class="fa fa-check"></i><b>3.1.11</b> Meta elementi</a></li>
+<li class="chapter" data-level="3.1.12" data-path="HTML-CSS.html"><a href="HTML-CSS.html#napredni-gradniki-spletnih-obrazcev"><i class="fa fa-check"></i><b>3.1.12</b> Napredni gradniki spletnih obrazcev</a></li>
+<li class="chapter" data-level="3.1.13" data-path="HTML-CSS.html"><a href="HTML-CSS.html#samodejno-dopolnjevanje-vrednosti-pri-vnosnih-poljih"><i class="fa fa-check"></i><b>3.1.13</b> Samodejno dopolnjevanje vrednosti pri vnosnih poljih</a></li>
+<li class="chapter" data-level="3.1.14" data-path="HTML-CSS.html"><a href="HTML-CSS.html#elementi-za-opredelitev-strukture-strani"><i class="fa fa-check"></i><b>3.1.14</b> Elementi za opredelitev strukture strani</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="HTML-CSS.html"><a href="HTML-CSS.html#prekrivni-slogi-css"><i class="fa fa-check"></i><b>3.2</b> Prekrivni slogi (CSS)</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="HTML-CSS.html"><a href="HTML-CSS.html#uvod-1"><i class="fa fa-check"></i><b>3.2.1</b> Uvod</a></li>
+<li class="chapter" data-level="3.2.2" data-path="HTML-CSS.html"><a href="HTML-CSS.html#neposredno-opredeljeni-slogi"><i class="fa fa-check"></i><b>3.2.2</b> Neposredno opredeljeni slogi</a></li>
+<li class="chapter" data-level="3.2.3" data-path="HTML-CSS.html"><a href="HTML-CSS.html#vgrajeni-slogi"><i class="fa fa-check"></i><b>3.2.3</b> Vgrajeni slogi</a></li>
+<li class="chapter" data-level="3.2.4" data-path="HTML-CSS.html"><a href="HTML-CSS.html#konfliktni-slogi"><i class="fa fa-check"></i><b>3.2.4</b> Konfliktni slogi</a></li>
+<li class="chapter" data-level="3.2.5" data-path="HTML-CSS.html"><a href="HTML-CSS.html#zunanji-slogi"><i class="fa fa-check"></i><b>3.2.5</b> Zunanji slogi</a></li>
+<li class="chapter" data-level="3.2.6" data-path="HTML-CSS.html"><a href="HTML-CSS.html#pozicioniranje-elementov"><i class="fa fa-check"></i><b>3.2.6</b> Pozicioniranje elementov</a></li>
+<li class="chapter" data-level="3.2.7" data-path="HTML-CSS.html"><a href="HTML-CSS.html#ozadje"><i class="fa fa-check"></i><b>3.2.7</b> Ozadje</a></li>
+<li class="chapter" data-level="3.2.8" data-path="HTML-CSS.html"><a href="HTML-CSS.html#dimenzije-elementa"><i class="fa fa-check"></i><b>3.2.8</b> Dimenzije elementa</a></li>
+<li class="chapter" data-level="3.2.9" data-path="HTML-CSS.html"><a href="HTML-CSS.html#model-škatle"><i class="fa fa-check"></i><b>3.2.9</b> Model škatle</a></li>
+<li class="chapter" data-level="3.2.10" data-path="HTML-CSS.html"><a href="HTML-CSS.html#plavajoči-elementi"><i class="fa fa-check"></i><b>3.2.10</b> Plavajoči elementi</a></li>
+<li class="chapter" data-level="3.2.11" data-path="HTML-CSS.html"><a href="HTML-CSS.html#vrste-medijev"><i class="fa fa-check"></i><b>3.2.11</b> Vrste medijev</a></li>
+<li class="chapter" data-level="3.2.12" data-path="HTML-CSS.html"><a href="HTML-CSS.html#spustni-meniji"><i class="fa fa-check"></i><b>3.2.12</b> Spustni meniji</a></li>
+<li class="chapter" data-level="3.2.13" data-path="HTML-CSS.html"><a href="HTML-CSS.html#senca-na-besedilu"><i class="fa fa-check"></i><b>3.2.13</b> Senca na besedilu</a></li>
+<li class="chapter" data-level="3.2.14" data-path="HTML-CSS.html"><a href="HTML-CSS.html#zaobljeni-robovi"><i class="fa fa-check"></i><b>3.2.14</b> Zaobljeni robovi</a></li>
+<li class="chapter" data-level="3.2.15" data-path="HTML-CSS.html"><a href="HTML-CSS.html#barva"><i class="fa fa-check"></i><b>3.2.15</b> Barva</a></li>
+<li class="chapter" data-level="3.2.16" data-path="HTML-CSS.html"><a href="HTML-CSS.html#senca-na-modelu-škatle"><i class="fa fa-check"></i><b>3.2.16</b> Senca na modelu škatle</a></li>
+<li class="chapter" data-level="3.2.17" data-path="HTML-CSS.html"><a href="HTML-CSS.html#uporaba-pisav-s-spleta"><i class="fa fa-check"></i><b>3.2.17</b> Uporaba pisav s spleta</a></li>
+<li class="chapter" data-level="3.2.18" data-path="HTML-CSS.html"><a href="HTML-CSS.html#prilagodljiv-model-škatle-in-izbira-poljubnega-ugnezdenega-elementa"><i class="fa fa-check"></i><b>3.2.18</b> Prilagodljiv model škatle in izbira poljubnega ugnezdenega elementa</a></li>
+<li class="chapter" data-level="3.2.19" data-path="HTML-CSS.html"><a href="HTML-CSS.html#postavitev-v-več-stolpcev"><i class="fa fa-check"></i><b>3.2.19</b> Postavitev v več stolpcev</a></li>
+<li class="chapter" data-level="3.2.20" data-path="HTML-CSS.html"><a href="HTML-CSS.html#poizvedovanje-po-medijih"><i class="fa fa-check"></i><b>3.2.20</b> Poizvedovanje po medijih</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="HTML-CSS.html"><a href="HTML-CSS.html#bootstrap-1"><i class="fa fa-check"></i><b>3.3</b> Bootstrap</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="HTML-CSS.html"><a href="HTML-CSS.html#uvod-in-način-uporabe"><i class="fa fa-check"></i><b>3.3.1</b> Uvod in način uporabe</a></li>
+<li class="chapter" data-level="3.3.2" data-path="HTML-CSS.html"><a href="HTML-CSS.html#enostavni-primer"><i class="fa fa-check"></i><b>3.3.2</b> Enostavni primer</a></li>
+<li class="chapter" data-level="3.3.3" data-path="HTML-CSS.html"><a href="HTML-CSS.html#prilagajanje-vsebine-z-mrežnim-sistemom"><i class="fa fa-check"></i><b>3.3.3</b> Prilagajanje vsebine z mrežnim sistemom</a></li>
+<li class="chapter" data-level="3.3.4" data-path="HTML-CSS.html"><a href="HTML-CSS.html#tipografija"><i class="fa fa-check"></i><b>3.3.4</b> Tipografija</a></li>
+<li class="chapter" data-level="3.3.5" data-path="HTML-CSS.html"><a href="HTML-CSS.html#tabele-1"><i class="fa fa-check"></i><b>3.3.5</b> Tabele</a></li>
+<li class="chapter" data-level="3.3.6" data-path="HTML-CSS.html"><a href="HTML-CSS.html#slike-1"><i class="fa fa-check"></i><b>3.3.6</b> Slike</a></li>
+<li class="chapter" data-level="3.3.7" data-path="HTML-CSS.html"><a href="HTML-CSS.html#opozorila"><i class="fa fa-check"></i><b>3.3.7</b> Opozorila</a></li>
+<li class="chapter" data-level="3.3.8" data-path="HTML-CSS.html"><a href="HTML-CSS.html#gumbi"><i class="fa fa-check"></i><b>3.3.8</b> Gumbi</a></li>
+<li class="chapter" data-level="3.3.9" data-path="HTML-CSS.html"><a href="HTML-CSS.html#ikone"><i class="fa fa-check"></i><b>3.3.9</b> Ikone</a></li>
+<li class="chapter" data-level="3.3.10" data-path="HTML-CSS.html"><a href="HTML-CSS.html#oznake"><i class="fa fa-check"></i><b>3.3.10</b> Oznake</a></li>
+<li class="chapter" data-level="3.3.11" data-path="HTML-CSS.html"><a href="HTML-CSS.html#kazalnik-poteka"><i class="fa fa-check"></i><b>3.3.11</b> Kazalnik poteka</a></li>
+<li class="chapter" data-level="3.3.12" data-path="HTML-CSS.html"><a href="HTML-CSS.html#prehodi-po-straneh"><i class="fa fa-check"></i><b>3.3.12</b> Prehodi po straneh</a></li>
+<li class="chapter" data-level="3.3.13" data-path="HTML-CSS.html"><a href="HTML-CSS.html#plošča"><i class="fa fa-check"></i><b>3.3.13</b> Plošča</a></li>
+<li class="chapter" data-level="3.3.14" data-path="HTML-CSS.html"><a href="HTML-CSS.html#spustni-meni"><i class="fa fa-check"></i><b>3.3.14</b> Spustni meni</a></li>
+<li class="chapter" data-level="3.3.15" data-path="HTML-CSS.html"><a href="HTML-CSS.html#spletni-obrazci"><i class="fa fa-check"></i><b>3.3.15</b> Spletni obrazci</a></li>
+<li class="chapter" data-level="3.3.16" data-path="HTML-CSS.html"><a href="HTML-CSS.html#modalno-okno"><i class="fa fa-check"></i><b>3.3.16</b> Modalno okno</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="HTML-CSS.html"><a href="HTML-CSS.html#praktični-prikaz-uporabe-css"><i class="fa fa-check"></i><b>3.4</b> Praktični prikaz uporabe CSS</a></li>
+</ul></li>
+<li class="part"><span><b>II sklop: JavaScript - programski jezik na strani odjemalca in strežnika</b></span></li>
+<li class="chapter" data-level="4" data-path="JavaScript.html"><a href="JavaScript.html"><i class="fa fa-check"></i><b>4</b> <span class="sklop2 oznaka">P2.1</span> JavaScript, jezik svetovnega spleta</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="JavaScript.html"><a href="JavaScript.html#razvoj-jezika"><i class="fa fa-check"></i><b>4.1</b> Razvoj jezika</a></li>
+<li class="chapter" data-level="4.2" data-path="JavaScript.html"><a href="JavaScript.html#vrednosti-podatkovni-tipi-in-operatorji"><i class="fa fa-check"></i><b>4.2</b> Vrednosti, podatkovni tipi in operatorji</a></li>
+<li class="chapter" data-level="4.3" data-path="JavaScript.html"><a href="JavaScript.html#struktura-programa"><i class="fa fa-check"></i><b>4.3</b> Struktura programa</a></li>
+<li class="chapter" data-level="4.4" data-path="JavaScript.html"><a href="JavaScript.html#kontrolni-stavki"><i class="fa fa-check"></i><b>4.4</b> Kontrolni stavki</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="JavaScript.html"><a href="JavaScript.html#if-stavek"><i class="fa fa-check"></i><b>4.4.1</b> <code>if</code> stavek</a></li>
+<li class="chapter" data-level="4.4.2" data-path="JavaScript.html"><a href="JavaScript.html#if...else-stavek"><i class="fa fa-check"></i><b>4.4.2</b> <code>if...else</code> stavek</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="JavaScript.html"><a href="JavaScript.html#operatorji"><i class="fa fa-check"></i><b>4.5</b> Operatorji</a></li>
+<li class="chapter" data-level="4.6" data-path="JavaScript.html"><a href="JavaScript.html#struktura-ponavljanja"><i class="fa fa-check"></i><b>4.6</b> Struktura ponavljanja</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="JavaScript.html"><a href="JavaScript.html#while-stavek"><i class="fa fa-check"></i><b>4.6.1</b> <code>while</code> stavek</a></li>
+<li class="chapter" data-level="4.6.2" data-path="JavaScript.html"><a href="JavaScript.html#for-stavek"><i class="fa fa-check"></i><b>4.6.2</b> <code>for</code> stavek</a></li>
+<li class="chapter" data-level="4.6.3" data-path="JavaScript.html"><a href="JavaScript.html#do...while-stavek"><i class="fa fa-check"></i><b>4.6.3</b> <code>do...while</code> stavek</a></li>
+<li class="chapter" data-level="4.6.4" data-path="JavaScript.html"><a href="JavaScript.html#break-in-continue"><i class="fa fa-check"></i><b>4.6.4</b> <code>break</code> in <code>continue</code></a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="JavaScript.html"><a href="JavaScript.html#funkcije"><i class="fa fa-check"></i><b>4.7</b> Funkcije</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="JavaScript.html"><a href="JavaScript.html#opredelitev-funkcije"><i class="fa fa-check"></i><b>4.7.1</b> Opredelitev funkcije</a></li>
+<li class="chapter" data-level="4.7.2" data-path="JavaScript.html"><a href="JavaScript.html#parametri-in-kontekst"><i class="fa fa-check"></i><b>4.7.2</b> Parametri in kontekst</a></li>
+<li class="chapter" data-level="4.7.3" data-path="JavaScript.html"><a href="JavaScript.html#zaprtje"><i class="fa fa-check"></i><b>4.7.3</b> Zaprtje</a></li>
+<li class="chapter" data-level="4.7.4" data-path="JavaScript.html"><a href="JavaScript.html#rekurzija"><i class="fa fa-check"></i><b>4.7.4</b> Rekurzija</a></li>
+</ul></li>
+<li class="chapter" data-level="4.8" data-path="JavaScript.html"><a href="JavaScript.html#podatkovne-strukture"><i class="fa fa-check"></i><b>4.8</b> Podatkovne strukture</a>
+<ul>
+<li class="chapter" data-level="4.8.1" data-path="JavaScript.html"><a href="JavaScript.html#nizi-in-njihove-lastnosti"><i class="fa fa-check"></i><b>4.8.1</b> Nizi in njihove lastnosti</a></li>
+<li class="chapter" data-level="4.8.2" data-path="JavaScript.html"><a href="JavaScript.html#objekt-argumentov-funkcije"><i class="fa fa-check"></i><b>4.8.2</b> Objekt argumentov funkcije</a></li>
+<li class="chapter" data-level="4.8.3" data-path="JavaScript.html"><a href="JavaScript.html#json"><i class="fa fa-check"></i><b>4.8.3</b> JSON</a></li>
+</ul></li>
+<li class="chapter" data-level="4.9" data-path="JavaScript.html"><a href="JavaScript.html#funkcije-višjega-reda"><i class="fa fa-check"></i><b>4.9</b> Funkcije višjega reda</a>
+<ul>
+<li class="chapter" data-level="4.9.1" data-path="JavaScript.html"><a href="JavaScript.html#abstrakcija"><i class="fa fa-check"></i><b>4.9.1</b> Abstrakcija</a></li>
+<li class="chapter" data-level="4.9.2" data-path="JavaScript.html"><a href="JavaScript.html#funkcije-višjega-reda-1"><i class="fa fa-check"></i><b>4.9.2</b> Funkcije višjega reda</a></li>
+<li class="chapter" data-level="4.9.3" data-path="JavaScript.html"><a href="JavaScript.html#posredovanje-argumentov"><i class="fa fa-check"></i><b>4.9.3</b> Posredovanje argumentov</a></li>
+</ul></li>
+<li class="chapter" data-level="4.10" data-path="JavaScript.html"><a href="JavaScript.html#objekti"><i class="fa fa-check"></i><b>4.10</b> Objekti</a>
+<ul>
+<li class="chapter" data-level="4.10.1" data-path="JavaScript.html"><a href="JavaScript.html#metode"><i class="fa fa-check"></i><b>4.10.1</b> Metode</a></li>
+<li class="chapter" data-level="4.10.2" data-path="JavaScript.html"><a href="JavaScript.html#prototipi"><i class="fa fa-check"></i><b>4.10.2</b> Prototipi</a></li>
+<li class="chapter" data-level="4.10.3" data-path="JavaScript.html"><a href="JavaScript.html#konstruktorji"><i class="fa fa-check"></i><b>4.10.3</b> Konstruktorji</a></li>
+<li class="chapter" data-level="4.10.4" data-path="JavaScript.html"><a href="JavaScript.html#razredna-notacija"><i class="fa fa-check"></i><b>4.10.4</b> Razredna notacija</a></li>
+<li class="chapter" data-level="4.10.5" data-path="JavaScript.html"><a href="JavaScript.html#prekrivanje-lastnosti"><i class="fa fa-check"></i><b>4.10.5</b> Prekrivanje lastnosti</a></li>
+<li class="chapter" data-level="4.10.6" data-path="JavaScript.html"><a href="JavaScript.html#get-in-set-metode"><i class="fa fa-check"></i><b>4.10.6</b> <code>Get</code> in <code>set</code> metode</a></li>
+<li class="chapter" data-level="4.10.7" data-path="JavaScript.html"><a href="JavaScript.html#primerek"><i class="fa fa-check"></i><b>4.10.7</b> Primerek</a></li>
+</ul></li>
+<li class="chapter" data-level="4.11" data-path="JavaScript.html"><a href="JavaScript.html#hrošči-in-obvladovanje-napak"><i class="fa fa-check"></i><b>4.11</b> Hrošči in obvladovanje napak</a>
+<ul>
+<li class="chapter" data-level="4.11.1" data-path="JavaScript.html"><a href="JavaScript.html#strog-način-delovanja"><i class="fa fa-check"></i><b>4.11.1</b> Strog način delovanja</a></li>
+<li class="chapter" data-level="4.11.2" data-path="JavaScript.html"><a href="JavaScript.html#testiranje"><i class="fa fa-check"></i><b>4.11.2</b> Testiranje</a></li>
+<li class="chapter" data-level="4.11.3" data-path="JavaScript.html"><a href="JavaScript.html#obvladovanje-izjem"><i class="fa fa-check"></i><b>4.11.3</b> Obvladovanje izjem</a></li>
+</ul></li>
+<li class="chapter" data-level="4.12" data-path="JavaScript.html"><a href="JavaScript.html#regularni-izrazi"><i class="fa fa-check"></i><b>4.12</b> Regularni izrazi</a>
+<ul>
+<li class="chapter" data-level="4.12.1" data-path="JavaScript.html"><a href="JavaScript.html#kreiranje-regularnega-izraza"><i class="fa fa-check"></i><b>4.12.1</b> Kreiranje regularnega izraza</a></li>
+<li class="chapter" data-level="4.12.2" data-path="JavaScript.html"><a href="JavaScript.html#testiranje-ujemanja"><i class="fa fa-check"></i><b>4.12.2</b> Testiranje ujemanja</a></li>
+<li class="chapter" data-level="4.12.3" data-path="JavaScript.html"><a href="JavaScript.html#testiranje-ujemanja-množice-znakov"><i class="fa fa-check"></i><b>4.12.3</b> Testiranje ujemanja množice znakov</a></li>
+<li class="chapter" data-level="4.12.4" data-path="JavaScript.html"><a href="JavaScript.html#ponavljanje-delov-vzorca"><i class="fa fa-check"></i><b>4.12.4</b> Ponavljanje delov vzorca</a></li>
+<li class="chapter" data-level="4.12.5" data-path="JavaScript.html"><a href="JavaScript.html#združevanje-delov-vzorca"><i class="fa fa-check"></i><b>4.12.5</b> Združevanje delov vzorca</a></li>
+<li class="chapter" data-level="4.12.6" data-path="JavaScript.html"><a href="JavaScript.html#ujemanje-in-grupiranje"><i class="fa fa-check"></i><b>4.12.6</b> Ujemanje in grupiranje</a></li>
+<li class="chapter" data-level="4.12.7" data-path="JavaScript.html"><a href="JavaScript.html#omejevanje-besed"><i class="fa fa-check"></i><b>4.12.7</b> Omejevanje besed</a></li>
+<li class="chapter" data-level="4.12.8" data-path="JavaScript.html"><a href="JavaScript.html#vzorci-z-več-možnostmi"><i class="fa fa-check"></i><b>4.12.8</b> Vzorci z več možnostmi</a></li>
+<li class="chapter" data-level="4.12.9" data-path="JavaScript.html"><a href="JavaScript.html#zamenjava-podnizov"><i class="fa fa-check"></i><b>4.12.9</b> Zamenjava podnizov</a></li>
+<li class="chapter" data-level="4.12.10" data-path="JavaScript.html"><a href="JavaScript.html#požrešna-metoda-ujemanja"><i class="fa fa-check"></i><b>4.12.10</b> Požrešna metoda ujemanja</a></li>
+<li class="chapter" data-level="4.12.11" data-path="JavaScript.html"><a href="JavaScript.html#dinamično-kreiranje-regexp-objektov"><i class="fa fa-check"></i><b>4.12.11</b> Dinamično kreiranje <code>RegExp</code> objektov</a></li>
+<li class="chapter" data-level="4.12.12" data-path="JavaScript.html"><a href="JavaScript.html#sprehod-po-zadetkih-ujemanja"><i class="fa fa-check"></i><b>4.12.12</b> Sprehod po zadetkih ujemanja</a></li>
+</ul></li>
+<li class="chapter" data-level="4.13" data-path="JavaScript.html"><a href="JavaScript.html#moduli"><i class="fa fa-check"></i><b>4.13</b> Moduli</a>
+<ul>
+<li class="chapter" data-level="4.13.1" data-path="JavaScript.html"><a href="JavaScript.html#uporaba-funkcij-v-vlogi-imenskega-prostora"><i class="fa fa-check"></i><b>4.13.1</b> Uporaba funkcij v vlogi imenskega prostora</a></li>
+<li class="chapter" data-level="4.13.2" data-path="JavaScript.html"><a href="JavaScript.html#objekti-kot-vmesniki"><i class="fa fa-check"></i><b>4.13.2</b> Objekti kot vmesniki</a></li>
+<li class="chapter" data-level="4.13.3" data-path="JavaScript.html"><a href="JavaScript.html#izvajanje-podatkov-v-obliki-kode"><i class="fa fa-check"></i><b>4.13.3</b> Izvajanje podatkov v obliki kode</a></li>
+</ul></li>
+<li class="chapter" data-level="4.14" data-path="JavaScript.html"><a href="JavaScript.html#javascript-in-spletni-brskalnik"><i class="fa fa-check"></i><b>4.14</b> JavaScript in spletni brskalnik</a>
+<ul>
+<li class="chapter" data-level="4.14.1" data-path="JavaScript.html"><a href="JavaScript.html#html-in-javascript"><i class="fa fa-check"></i><b>4.14.1</b> HTML in JavaScript</a></li>
+<li class="chapter" data-level="4.14.2" data-path="JavaScript.html"><a href="JavaScript.html#zaščiteno-okolje"><i class="fa fa-check"></i><b>4.14.2</b> Zaščiteno okolje</a></li>
+</ul></li>
+<li class="chapter" data-level="4.15" data-path="JavaScript.html"><a href="JavaScript.html#objektni-model-dokumenta"><i class="fa fa-check"></i><b>4.15</b> Objektni model dokumenta</a>
+<ul>
+<li class="chapter" data-level="4.15.1" data-path="JavaScript.html"><a href="JavaScript.html#struktura-dokumenta-in-predstavitev-v-obliki-drevesa"><i class="fa fa-check"></i><b>4.15.1</b> Struktura dokumenta in predstavitev v obliki drevesa</a></li>
+<li class="chapter" data-level="4.15.2" data-path="JavaScript.html"><a href="JavaScript.html#iskanje-elementov"><i class="fa fa-check"></i><b>4.15.2</b> Iskanje elementov</a></li>
+<li class="chapter" data-level="4.15.3" data-path="JavaScript.html"><a href="JavaScript.html#spreminjanje-dokumenta"><i class="fa fa-check"></i><b>4.15.3</b> Spreminjanje dokumenta</a></li>
+<li class="chapter" data-level="4.15.4" data-path="JavaScript.html"><a href="JavaScript.html#dodajanje-elementov"><i class="fa fa-check"></i><b>4.15.4</b> Dodajanje elementov</a></li>
+<li class="chapter" data-level="4.15.5" data-path="JavaScript.html"><a href="JavaScript.html#uporaba-lastnih-atributov"><i class="fa fa-check"></i><b>4.15.5</b> Uporaba lastnih atributov</a></li>
+<li class="chapter" data-level="4.15.6" data-path="JavaScript.html"><a href="JavaScript.html#postavitev-na-strani"><i class="fa fa-check"></i><b>4.15.6</b> Postavitev na strani</a></li>
+<li class="chapter" data-level="4.15.7" data-path="JavaScript.html"><a href="JavaScript.html#oblikovanje-in-prekrivni-slogi"><i class="fa fa-check"></i><b>4.15.7</b> Oblikovanje in prekrivni slogi</a></li>
+</ul></li>
+<li class="chapter" data-level="4.16" data-path="JavaScript.html"><a href="JavaScript.html#obvladovanje-dogodkov"><i class="fa fa-check"></i><b>4.16</b> Obvladovanje dogodkov</a>
+<ul>
+<li class="chapter" data-level="4.16.1" data-path="JavaScript.html"><a href="JavaScript.html#dogodki-na-html-gradnikih"><i class="fa fa-check"></i><b>4.16.1</b> Dogodki na HTML gradnikih</a></li>
+<li class="chapter" data-level="4.16.2" data-path="JavaScript.html"><a href="JavaScript.html#objekt-dogodka"><i class="fa fa-check"></i><b>4.16.2</b> Objekt dogodka</a></li>
+<li class="chapter" data-level="4.16.3" data-path="JavaScript.html"><a href="JavaScript.html#širjenje-obvladovanja-dogodkov"><i class="fa fa-check"></i><b>4.16.3</b> Širjenje obvladovanja dogodkov</a></li>
+<li class="chapter" data-level="4.16.4" data-path="JavaScript.html"><a href="JavaScript.html#privzete-akcije"><i class="fa fa-check"></i><b>4.16.4</b> Privzete akcije</a></li>
+<li class="chapter" data-level="4.16.5" data-path="JavaScript.html"><a href="JavaScript.html#pritisk-tipke-na-tipkovnici"><i class="fa fa-check"></i><b>4.16.5</b> Pritisk tipke na tipkovnici</a></li>
+<li class="chapter" data-level="4.16.6" data-path="JavaScript.html"><a href="JavaScript.html#dogodki-z-miško"><i class="fa fa-check"></i><b>4.16.6</b> Dogodki z miško</a></li>
+<li class="chapter" data-level="4.16.7" data-path="JavaScript.html"><a href="JavaScript.html#fokusiranje"><i class="fa fa-check"></i><b>4.16.7</b> Fokusiranje</a></li>
+<li class="chapter" data-level="4.16.8" data-path="JavaScript.html"><a href="JavaScript.html#dogodek-nalaganja"><i class="fa fa-check"></i><b>4.16.8</b> Dogodek nalaganja</a></li>
+<li class="chapter" data-level="4.16.9" data-path="JavaScript.html"><a href="JavaScript.html#časovniki"><i class="fa fa-check"></i><b>4.16.9</b> Časovniki</a></li>
+<li class="chapter" data-level="4.16.10" data-path="JavaScript.html"><a href="JavaScript.html#čas-poteka"><i class="fa fa-check"></i><b>4.16.10</b> Čas poteka</a></li>
+</ul></li>
+<li class="chapter" data-level="4.17" data-path="JavaScript.html"><a href="JavaScript.html#http"><i class="fa fa-check"></i><b>4.17</b> HTTP</a>
+<ul>
+<li class="chapter" data-level="4.17.1" data-path="JavaScript.html"><a href="JavaScript.html#spletni-brskalniki-in-http"><i class="fa fa-check"></i><b>4.17.1</b> Spletni brskalniki in HTTP</a></li>
+<li class="chapter" data-level="4.17.2" data-path="JavaScript.html"><a href="JavaScript.html#posredovanje-zahteve"><i class="fa fa-check"></i><b>4.17.2</b> Posredovanje zahteve</a></li>
+<li class="chapter" data-level="4.17.3" data-path="JavaScript.html"><a href="JavaScript.html#http-peskovnik"><i class="fa fa-check"></i><b>4.17.3</b> HTTP peskovnik</a></li>
+<li class="chapter" data-level="4.17.4" data-path="JavaScript.html"><a href="JavaScript.html#abstrakcija-zahtev"><i class="fa fa-check"></i><b>4.17.4</b> Abstrakcija zahtev</a></li>
+<li class="chapter" data-level="4.17.5" data-path="JavaScript.html"><a href="JavaScript.html#promises"><i class="fa fa-check"></i><b>4.17.5</b> Promises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.18" data-path="JavaScript.html"><a href="JavaScript.html#spletni-obrazci-in-vnosna-polja"><i class="fa fa-check"></i><b>4.18</b> Spletni obrazci in vnosna polja</a>
+<ul>
+<li class="chapter" data-level="4.18.1" data-path="JavaScript.html"><a href="JavaScript.html#vnosna-polja"><i class="fa fa-check"></i><b>4.18.1</b> Vnosna polja</a></li>
+<li class="chapter" data-level="4.18.2" data-path="JavaScript.html"><a href="JavaScript.html#fokus-vnosa-s-tipkovnico"><i class="fa fa-check"></i><b>4.18.2</b> Fokus vnosa s tipkovnico</a></li>
+<li class="chapter" data-level="4.18.3" data-path="JavaScript.html"><a href="JavaScript.html#onemogočeni-elementi-spletnega-obrazca"><i class="fa fa-check"></i><b>4.18.3</b> Onemogočeni elementi spletnega obrazca</a></li>
+<li class="chapter" data-level="4.18.4" data-path="JavaScript.html"><a href="JavaScript.html#spletni-obrazec-kot-celota"><i class="fa fa-check"></i><b>4.18.4</b> Spletni obrazec kot celota</a></li>
+<li class="chapter" data-level="4.18.5" data-path="JavaScript.html"><a href="JavaScript.html#besedilna-vnosna-polja"><i class="fa fa-check"></i><b>4.18.5</b> Besedilna vnosna polja</a></li>
+<li class="chapter" data-level="4.18.6" data-path="JavaScript.html"><a href="JavaScript.html#gradniki-večkratne-izbire"><i class="fa fa-check"></i><b>4.18.6</b> Gradniki (večkratne) izbire</a></li>
+<li class="chapter" data-level="4.18.7" data-path="JavaScript.html"><a href="JavaScript.html#izbirna-polja"><i class="fa fa-check"></i><b>4.18.7</b> Izbirna polja</a></li>
+<li class="chapter" data-level="4.18.8" data-path="JavaScript.html"><a href="JavaScript.html#vnosno-polje-datoteke"><i class="fa fa-check"></i><b>4.18.8</b> Vnosno polje datoteke</a></li>
+<li class="chapter" data-level="4.18.9" data-path="JavaScript.html"><a href="JavaScript.html#shranjevanje-podatkov-na-odjemalcu"><i class="fa fa-check"></i><b>4.18.9</b> Shranjevanje podatkov na odjemalcu</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="Node-js.html"><a href="Node-js.html"><i class="fa fa-check"></i><b>5</b> <span class="sklop2 oznaka">P2.2</span> Node.js, MVC in različna okolja</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="Node-js.html"><a href="Node-js.html#node.js"><i class="fa fa-check"></i><b>5.1</b> Node.js</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="Node-js.html"><a href="Node-js.html#ozadje-1"><i class="fa fa-check"></i><b>5.1.1</b> Ozadje</a></li>
+<li class="chapter" data-level="5.1.2" data-path="Node-js.html"><a href="Node-js.html#asinhronost"><i class="fa fa-check"></i><b>5.1.2</b> Asinhronost</a></li>
+<li class="chapter" data-level="5.1.3" data-path="Node-js.html"><a href="Node-js.html#ukaz-node"><i class="fa fa-check"></i><b>5.1.3</b> Ukaz <code>node</code></a></li>
+<li class="chapter" data-level="5.1.4" data-path="Node-js.html"><a href="Node-js.html#moduli-1"><i class="fa fa-check"></i><b>5.1.4</b> Moduli</a></li>
+<li class="chapter" data-level="5.1.5" data-path="Node-js.html"><a href="Node-js.html#nameščanje-z-npm"><i class="fa fa-check"></i><b>5.1.5</b> Nameščanje z <code>npm</code></a></li>
+<li class="chapter" data-level="5.1.6" data-path="Node-js.html"><a href="Node-js.html#modul-za-dostop-do-datotečnega-sistema"><i class="fa fa-check"></i><b>5.1.6</b> Modul za dostop do datotečnega sistema</a></li>
+<li class="chapter" data-level="5.1.7" data-path="Node-js.html"><a href="Node-js.html#modul-http"><i class="fa fa-check"></i><b>5.1.7</b> Modul <code>http</code></a></li>
+<li class="chapter" data-level="5.1.8" data-path="Node-js.html"><a href="Node-js.html#tok-podatkov"><i class="fa fa-check"></i><b>5.1.8</b> Tok podatkov</a></li>
+<li class="chapter" data-level="5.1.9" data-path="Node-js.html"><a href="Node-js.html#enostavni-datotečni-strežnik"><i class="fa fa-check"></i><b>5.1.9</b> Enostavni datotečni strežnik</a></li>
+<li class="chapter" data-level="5.1.10" data-path="Node-js.html"><a href="Node-js.html#obvladovanje-napak"><i class="fa fa-check"></i><b>5.1.10</b> Obvladovanje napak</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="Node-js.html"><a href="Node-js.html#vzpostavitev-in-nastavitev-projekta"><i class="fa fa-check"></i><b>5.2</b> Vzpostavitev in nastavitev projekta</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="Node-js.html"><a href="Node-js.html#pregled-uporabljenih-orodij-express-node-in-npm"><i class="fa fa-check"></i><b>5.2.1</b> Pregled uporabljenih orodij Express, Node in <code>npm</code></a></li>
+<li class="chapter" data-level="5.2.2" data-path="Node-js.html"><a href="Node-js.html#kreiranje-projekta-express"><i class="fa fa-check"></i><b>5.2.2</b> Kreiranje projekta Express</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="Node-js.html"><a href="Node-js.html#gradnja-aplikacije-z-mvc"><i class="fa fa-check"></i><b>5.3</b> Gradnja aplikacije z MVC</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="Node-js.html"><a href="Node-js.html#kratek-pregled-mvc-arhitekture"><i class="fa fa-check"></i><b>5.3.1</b> Kratek pregled MVC arhitekture</a></li>
+<li class="chapter" data-level="5.3.2" data-path="Node-js.html"><a href="Node-js.html#kako-express-obdela-zahteve"><i class="fa fa-check"></i><b>5.3.2</b> Kako Express obdela zahteve?</a></li>
+<li class="chapter" data-level="5.3.3" data-path="Node-js.html"><a href="Node-js.html#gradnja-statične-aplikacije-z-node-in-express"><i class="fa fa-check"></i><b>5.3.3</b> Gradnja statične aplikacije z Node in Express</a></li>
+<li class="chapter" data-level="5.3.4" data-path="Node-js.html"><a href="Node-js.html#prilagoditev-ogrodja-express-za-mvc"><i class="fa fa-check"></i><b>5.3.4</b> Prilagoditev ogrodja Express za MVC</a></li>
+<li class="chapter" data-level="5.3.5" data-path="Node-js.html"><a href="Node-js.html#dodajanje-zunanjih-knjižnic-za-prilagoditev-izgleda-strani"><i class="fa fa-check"></i><b>5.3.5</b> Dodajanje zunanjih knjižnic za prilagoditev izgleda strani</a></li>
+<li class="chapter" data-level="5.3.6" data-path="Node-js.html"><a href="Node-js.html#opredelitev-usmerjevalnikov-v-express"><i class="fa fa-check"></i><b>5.3.6</b> Opredelitev usmerjevalnikov v Express</a></li>
+<li class="chapter" data-level="5.3.7" data-path="Node-js.html"><a href="Node-js.html#izdelava-osnovnih-krmilnikov"><i class="fa fa-check"></i><b>5.3.7</b> Izdelava osnovnih krmilnikov</a></li>
+<li class="chapter" data-level="5.3.8" data-path="Node-js.html"><a href="Node-js.html#dopolnitev-pogledov"><i class="fa fa-check"></i><b>5.3.8</b> Dopolnitev pogledov</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="Node-js.html"><a href="Node-js.html#strežba-aplikacije-v-različnih-okoljih"><i class="fa fa-check"></i><b>5.4</b> Strežba aplikacije v različnih okoljih</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="Node-js.html"><a href="Node-js.html#docker"><i class="fa fa-check"></i><b>5.4.1</b> Strežba aplikacije v okolju Docker</a></li>
+<li class="chapter" data-level="5.4.2" data-path="Node-js.html"><a href="Node-js.html#strežba-aplikacije-na-fly"><i class="fa fa-check"></i><b>5.4.2</b> Strežba aplikacije na Fly</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>III sklop: Zaledni del in dostop do podatkov</b></span></li>
+<li class="chapter" data-level="6" data-path="PB-REST-API.html"><a href="PB-REST-API.html"><i class="fa fa-check"></i><b>6</b> <span class="sklop3 oznaka">P3.1</span> Podatkovna baza in REST API</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="PB-REST-API.html"><a href="PB-REST-API.html#priprava-podatkovnega-modela-za-mongodb-z-mongoose"><i class="fa fa-check"></i><b>6.1</b> Priprava podatkovnega modela za MongoDB z Mongoose</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="PB-REST-API.html"><a href="PB-REST-API.html#Povezovanje-Express-aplikacije-in-MongoDB-z-Mongoose"><i class="fa fa-check"></i><b>6.1.1</b> Povezovanje Express aplikacije in MongoDB z Mongoose</a></li>
+<li class="chapter" data-level="6.1.2" data-path="PB-REST-API.html"><a href="PB-REST-API.html#zakaj-je-treba-modelirati-podatke"><i class="fa fa-check"></i><b>6.1.2</b> Zakaj je treba modelirati podatke?</a></li>
+<li class="chapter" data-level="6.1.3" data-path="PB-REST-API.html"><a href="PB-REST-API.html#podatki-iz-registra"><i class="fa fa-check"></i><b>6.1.3</b> Podatki iz registra kulturne dediščine</a></li>
+<li class="chapter" data-level="6.1.4" data-path="PB-REST-API.html"><a href="PB-REST-API.html#opredelitev-sheme-z-mongoose"><i class="fa fa-check"></i><b>6.1.4</b> Opredelitev sheme z Mongoose</a></li>
+<li class="chapter" data-level="6.1.5" data-path="PB-REST-API.html"><a href="PB-REST-API.html#Uporaba-MongoDB-ukazne-lupine-za-dodajanje-podatkov"><i class="fa fa-check"></i><b>6.1.5</b> Uporaba MongoDB ukazne lupine za dodajanje podatkov</a></li>
+<li class="chapter" data-level="6.1.6" data-path="PB-REST-API.html"><a href="PB-REST-API.html#uvoz-testnih-podatkov"><i class="fa fa-check"></i><b>6.1.6</b> Uvoz testnih podatkov</a></li>
+<li class="chapter" data-level="6.1.7" data-path="PB-REST-API.html"><a href="PB-REST-API.html#vključitev-podatkovne-baze"><i class="fa fa-check"></i><b>6.1.7</b> Vključitev podatkovne baze</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="PB-REST-API.html"><a href="PB-REST-API.html#priprava-rest-api-ja-za-dostop-do-mongodb-podatkovne-baze"><i class="fa fa-check"></i><b>6.2</b> Priprava REST API-ja za dostop do MongoDB podatkovne baze</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="PB-REST-API.html"><a href="PB-REST-API.html#rest-api"><i class="fa fa-check"></i><b>6.2.1</b> REST API</a></li>
+<li class="chapter" data-level="6.2.2" data-path="PB-REST-API.html"><a href="PB-REST-API.html#url-zahteva"><i class="fa fa-check"></i><b>6.2.2</b> URL zahteva</a></li>
+<li class="chapter" data-level="6.2.3" data-path="PB-REST-API.html"><a href="PB-REST-API.html#metoda-zahteve"><i class="fa fa-check"></i><b>6.2.3</b> Metoda zahteve</a></li>
+<li class="chapter" data-level="6.2.4" data-path="PB-REST-API.html"><a href="PB-REST-API.html#odgovor-podatek-in-status-api-ja"><i class="fa fa-check"></i><b>6.2.4</b> Odgovor (podatek in status) API-ja</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="PB-REST-API.html"><a href="PB-REST-API.html#Implementacija-API-ja-z-ogrodjem-Express"><i class="fa fa-check"></i><b>6.3</b> Implementacija API-ja z ogrodjem Express</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="PB-REST-API.html"><a href="PB-REST-API.html#priprava-usmerjevalnika"><i class="fa fa-check"></i><b>6.3.1</b> Priprava usmerjevalnika</a></li>
+<li class="chapter" data-level="6.3.2" data-path="PB-REST-API.html"><a href="PB-REST-API.html#priprava-osnutka-krmilnika"><i class="fa fa-check"></i><b>6.3.2</b> Priprava osnutka krmilnika</a></li>
+<li class="chapter" data-level="6.3.3" data-path="PB-REST-API.html"><a href="PB-REST-API.html#testiranje-osnutka-api-ja"><i class="fa fa-check"></i><b>6.3.3</b> Testiranje osnutka API-ja</a></li>
+<li class="chapter" data-level="6.3.4" data-path="PB-REST-API.html"><a href="PB-REST-API.html#vključitev-modela"><i class="fa fa-check"></i><b>6.3.4</b> Vključitev modela</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="PB-REST-API.html"><a href="PB-REST-API.html#get-metode-za-branje-podatkov-iz-mongodb"><i class="fa fa-check"></i><b>6.4</b> GET metode za branje podatkov iz MongoDB</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="PB-REST-API.html"><a href="PB-REST-API.html#iskanje-dokumenta"><i class="fa fa-check"></i><b>6.4.1</b> Iskanje dokumenta</a></li>
+<li class="chapter" data-level="6.4.2" data-path="PB-REST-API.html"><a href="PB-REST-API.html#iskanje-odvisnega-dokumenta"><i class="fa fa-check"></i><b>6.4.2</b> Iskanje odvisnega dokumenta</a></li>
+<li class="chapter" data-level="6.4.3" data-path="PB-REST-API.html"><a href="PB-REST-API.html#geografsko-iskanje"><i class="fa fa-check"></i><b>6.4.3</b> Geografsko iskanje več dokumentov</a></li>
+<li class="chapter" data-level="6.4.4" data-path="PB-REST-API.html"><a href="PB-REST-API.html#napredno-iskanje"><i class="fa fa-check"></i><b>6.4.4</b> Napredno iskanje</a></li>
+<li class="chapter" data-level="6.4.5" data-path="PB-REST-API.html"><a href="PB-REST-API.html#seznami-sifrantov"><i class="fa fa-check"></i><b>6.4.5</b> Seznami šifrantov</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="Swagger.html"><a href="Swagger.html"><i class="fa fa-check"></i><b>7</b> <span class="sklop3 oznaka">P3.2</span> Načrtovanje s Swagger in OpenAPI</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="Swagger.html"><a href="Swagger.html#dokumentiranje-rest-api-ja-z-openapi-specifikacijo"><i class="fa fa-check"></i><b>7.1</b> Dokumentiranje REST API-ja z OpenAPI specifikacijo</a></li>
+<li class="chapter" data-level="7.2" data-path="Swagger.html"><a href="Swagger.html#post-metode-za-dodajanje-podatkov-v-mongodb"><i class="fa fa-check"></i><b>7.2</b> POST metode za dodajanje podatkov v MongoDB</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="Swagger.html"><a href="Swagger.html#dodajanje-novih-dokumentov-v-mongodb"><i class="fa fa-check"></i><b>7.2.1</b> Dodajanje novih dokumentov v MongoDB</a></li>
+<li class="chapter" data-level="7.2.2" data-path="Swagger.html"><a href="Swagger.html#dodajanje-odvisnih-dokumentov-v-mongodb"><i class="fa fa-check"></i><b>7.2.2</b> Dodajanje odvisnih dokumentov v MongoDB</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="Swagger.html"><a href="Swagger.html#put-metode-za-ažuriranje-podatkov-v-mongodb"><i class="fa fa-check"></i><b>7.3</b> PUT metode za ažuriranje podatkov v MongoDB</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="Swagger.html"><a href="Swagger.html#posodobitev-obstoječega-dokumenta-v-mongodb"><i class="fa fa-check"></i><b>7.3.1</b> Posodobitev obstoječega dokumenta v MongoDB</a></li>
+<li class="chapter" data-level="7.3.2" data-path="Swagger.html"><a href="Swagger.html#PUT-odvisni-dokument"><i class="fa fa-check"></i><b>7.3.2</b> Posodobitev obstoječega odvisnega dokumenta v MongoDB</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="Swagger.html"><a href="Swagger.html#delete-metode-za-brisanje-podatkov-iz-mongodb"><i class="fa fa-check"></i><b>7.4</b> DELETE metode za brisanje podatkov iz MongoDB</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="Swagger.html"><a href="Swagger.html#DELETE-comment"><i class="fa fa-check"></i><b>7.4.1</b> Brisanje obstoječega komentarja</a></li>
+<li class="chapter" data-level="7.4.2" data-path="Swagger.html"><a href="Swagger.html#brisanje-dokumentov"><i class="fa fa-check"></i><b>7.4.2</b> Brisanje dokumentov</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="Swagger.html"><a href="Swagger.html#uporaba-rest-api-ja-v-express-aplikaciji"><i class="fa fa-check"></i><b>7.5</b> Uporaba REST API-ja v Express aplikaciji</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="Swagger.html"><a href="Swagger.html#priprava-na-api-klic-iz-express-aplikacije"><i class="fa fa-check"></i><b>7.5.1</b> Priprava na API klic iz Express aplikacije</a></li>
+<li class="chapter" data-level="7.5.2" data-path="Swagger.html"><a href="Swagger.html#pridobitev-seznama-lokacij-preko-api-ja"><i class="fa fa-check"></i><b>7.5.2</b> Pridobitev seznama lokacij preko API-ja</a></li>
+<li class="chapter" data-level="7.5.3" data-path="Swagger.html"><a href="Swagger.html#priprava-novega-pogleda-seznama"><i class="fa fa-check"></i><b>7.5.3</b> Priprava novega pogleda seznama</a></li>
+<li class="chapter" data-level="7.5.4" data-path="Swagger.html"><a href="Swagger.html#axios-zunanji-viri"><i class="fa fa-check"></i><b>7.5.4</b> Vključitev ostalih podatkov iz zunanjih virov</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="Swagger.html"><a href="Swagger.html#izboljšanje-zmogljivosti-api-ja"><i class="fa fa-check"></i><b>7.6</b> Izboljšanje zmogljivosti API-ja</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="Swagger.html"><a href="Swagger.html#porazdelitev-po-straneh"><i class="fa fa-check"></i><b>7.6.1</b> Porazdelitev po straneh</a></li>
+<li class="chapter" data-level="7.6.2" data-path="Swagger.html"><a href="Swagger.html#asinhrono-beleženje"><i class="fa fa-check"></i><b>7.6.2</b> Asinhrono beleženje</a></li>
+<li class="chapter" data-level="7.6.3" data-path="Swagger.html"><a href="Swagger.html#predpomnjenje"><i class="fa fa-check"></i><b>7.6.3</b> Predpomnjenje</a></li>
+<li class="chapter" data-level="7.6.4" data-path="Swagger.html"><a href="Swagger.html#stiskanje-koristne-vsebine"><i class="fa fa-check"></i><b>7.6.4</b> Stiskanje koristne vsebine</a></li>
+<li class="chapter" data-level="7.6.5" data-path="Swagger.html"><a href="Swagger.html#bazen-povezav"><i class="fa fa-check"></i><b>7.6.5</b> Bazen povezav</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>IV sklop: Uporabniški vmesnik</b></span></li>
+<li class="chapter" data-level="8" data-path="Angular.html"><a href="Angular.html"><i class="fa fa-check"></i><b>8</b> <span class="sklop4 oznaka">P4.1</span> TypeScript in Angular</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="Angular.html"><a href="Angular.html#Dodajanje-Angular-komponent-v-Express-aplikacijo"><i class="fa fa-check"></i><b>8.1</b> Dodajanje Angular komponent v Express aplikacijo</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="Angular.html"><a href="Angular.html#namestitev-ogrodja-angular"><i class="fa fa-check"></i><b>8.1.1</b> Namestitev ogrodja Angular</a></li>
+<li class="chapter" data-level="8.1.2" data-path="Angular.html"><a href="Angular.html#jezik-typescript"><i class="fa fa-check"></i><b>8.1.2</b> Jezik TypeScript</a></li>
+<li class="chapter" data-level="8.1.3" data-path="Angular.html"><a href="Angular.html#kreiranje-in-zagon-angular-aplikacije"><i class="fa fa-check"></i><b>8.1.3</b> Kreiranje in zagon Angular aplikacije</a></li>
+<li class="chapter" data-level="8.1.4" data-path="Angular.html"><a href="Angular.html#Izvorna-koda-Angular-aplikacije"><i class="fa fa-check"></i><b>8.1.4</b> Izvorna koda Angular aplikacije</a></li>
+<li class="chapter" data-level="8.1.5" data-path="Angular.html"><a href="Angular.html#generiranje-angular-aplikacije-v-jeziku-javascript"><i class="fa fa-check"></i><b>8.1.5</b> Generiranje Angular aplikacije v jeziku JavaScript</a></li>
+<li class="chapter" data-level="8.1.6" data-path="Angular.html"><a href="Angular.html#komponenta-za-prikaz-podatkov"><i class="fa fa-check"></i><b>8.1.6</b> Komponenta za prikaz podatkov</a></li>
+<li class="chapter" data-level="8.1.7" data-path="Angular.html"><a href="Angular.html#Pridobivanje-podatkov-preko-REST-API-ja"><i class="fa fa-check"></i><b>8.1.7</b> Pridobivanje podatkov preko REST API-ja</a></li>
+<li class="chapter" data-level="8.1.8" data-path="Angular.html"><a href="Angular.html#prenos-angular-aplikacije-v-produkcijsko-okolje"><i class="fa fa-check"></i><b>8.1.8</b> Prenos Angular aplikacije v produkcijsko okolje</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="Angular.html"><a href="Angular.html#izdelava-angular-spa-aplikacije-na-eni-strani"><i class="fa fa-check"></i><b>8.2</b> Izdelava Angular SPA aplikacije na eni strani</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="Angular.html"><a href="Angular.html#Prehod-iz-Express-usmerjanja-na-Angular-usmerjanje"><i class="fa fa-check"></i><b>8.2.1</b> Prehod iz Express usmerjanja na Angular usmerjanje</a></li>
+<li class="chapter" data-level="8.2.2" data-path="Angular.html"><a href="Angular.html#navigacija-med-stranmi"><i class="fa fa-check"></i><b>8.2.2</b> Navigacija med stranmi</a></li>
+<li class="chapter" data-level="8.2.3" data-path="Angular.html"><a href="Angular.html#modularna-zasnova-aplikacije-z-vgnezdenimi-komponentami"><i class="fa fa-check"></i><b>8.2.3</b> Modularna zasnova aplikacije z vgnezdenimi komponentami</a></li>
+<li class="chapter" data-level="8.2.4" data-path="Angular.html"><a href="Angular.html#dodajanje-html-geolokacije-za-iskanje-bližnjih-lokacij"><i class="fa fa-check"></i><b>8.2.4</b> Dodajanje HTML geolokacije za iskanje bližnjih lokacij</a></li>
+<li class="chapter" data-level="8.2.5" data-path="Angular.html"><a href="Angular.html#prikaz-zvezdic-v-obliki-ponovno-uporabne-komponente"><i class="fa fa-check"></i><b>8.2.5</b> Prikaz zvezdic v obliki ponovno uporabne komponente</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="Angular-SPA.html"><a href="Angular-SPA.html"><i class="fa fa-check"></i><b>9</b> <span class="sklop4 oznaka">P4.2</span> Angular SPA</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="Angular-SPA.html"><a href="Angular-SPA.html#kompleksnejši-pogledi-s-parametri-usmerjevanja"><i class="fa fa-check"></i><b>9.1</b> Kompleksnejši pogledi s parametri usmerjevanja</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="Angular-SPA.html"><a href="Angular-SPA.html#sprememba-strukture-strani"><i class="fa fa-check"></i><b>9.1.1</b> Sprememba strukture strani</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="Angular-SPA.html"><a href="Angular-SPA.html#dodajanje-usmerjanja-z-url-parametri"><i class="fa fa-check"></i><b>9.2</b> Dodajanje usmerjanja z URL parametri</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="Angular-SPA.html"><a href="Angular-SPA.html#prenos-podatkov-do-komponente-s-podrobnostmi-lokacije"><i class="fa fa-check"></i><b>9.2.1</b> Prenos podatkov do komponente s podrobnostmi lokacije</a></li>
+<li class="chapter" data-level="9.2.2" data-path="Angular-SPA.html"><a href="Angular-SPA.html#pogled-podrobnosti-lokacije"><i class="fa fa-check"></i><b>9.2.2</b> Pogled podrobnosti lokacije</a></li>
+<li class="chapter" data-level="9.2.3" data-path="Angular-SPA.html"><a href="Angular-SPA.html#varnostne-izjeme-pri-prikazovanju-zunanjih-podatkov"><i class="fa fa-check"></i><b>9.2.3</b> Varnostne izjeme pri prikazovanju zunanjih podatkov</a></li>
+<li class="chapter" data-level="9.2.4" data-path="Angular-SPA.html"><a href="Angular-SPA.html#sprememba-vrstnega-reda-prikaza-komentarjev"><i class="fa fa-check"></i><b>9.2.4</b> Sprememba vrstnega reda prikaza komentarjev</a></li>
+<li class="chapter" data-level="9.2.5" data-path="Angular-SPA.html"><a href="Angular-SPA.html#formatiranje-datuma"><i class="fa fa-check"></i><b>9.2.5</b> Formatiranje datuma</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="Angular-SPA.html"><a href="Angular-SPA.html#delo-s-spletnimi-obrazci-in-pošiljanje-podatkov"><i class="fa fa-check"></i><b>9.3</b> Delo s spletnimi obrazci in pošiljanje podatkov</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="Angular-SPA.html"><a href="Angular-SPA.html#priprava-modalnega-okna"><i class="fa fa-check"></i><b>9.3.1</b> Priprava modalnega okna</a></li>
+<li class="chapter" data-level="9.3.2" data-path="Angular-SPA.html"><a href="Angular-SPA.html#dodajanje-spletnega-obrazca"><i class="fa fa-check"></i><b>9.3.2</b> Dodajanje spletnega obrazca</a></li>
+<li class="chapter" data-level="9.3.3" data-path="Angular-SPA.html"><a href="Angular-SPA.html#povezovanje-podatkov-in-vnosnih-polj-obrazca"><i class="fa fa-check"></i><b>9.3.3</b> Povezovanje podatkov in vnosnih polj obrazca</a></li>
+<li class="chapter" data-level="9.3.4" data-path="Angular-SPA.html"><a href="Angular-SPA.html#posredovanje-podatkov-spletnega-obrazca-na-rest-api"><i class="fa fa-check"></i><b>9.3.4</b> Posredovanje podatkov spletnega obrazca na REST API</a></li>
+<li class="chapter" data-level="9.3.5" data-path="Angular-SPA.html"><a href="Angular-SPA.html#brisanje-komentarjev"><i class="fa fa-check"></i><b>9.3.5</b> Brisanje komentarjev</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="Angular-SPA.html"><a href="Angular-SPA.html#izboljšava-arhitekture"><i class="fa fa-check"></i><b>9.4</b> Izboljšava arhitekture</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="Angular-SPA.html"><a href="Angular-SPA.html#locitev-usmerjanja"><i class="fa fa-check"></i><b>9.4.1</b> Ločitev usmerjanja</a></li>
+<li class="chapter" data-level="9.4.2" data-path="Angular-SPA.html"><a href="Angular-SPA.html#opredelitev-razredov"><i class="fa fa-check"></i><b>9.4.2</b> Opredelitev razredov</a></li>
+<li class="chapter" data-level="9.4.3" data-path="Angular-SPA.html"><a href="Angular-SPA.html#Organizacija-izvorne-kode-v-mape"><i class="fa fa-check"></i><b>9.4.3</b> Organizacija izvorne kode v mape</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="Angular-SPA.html"><a href="Angular-SPA.html#zamenjava-strežniške-aplikacije-s-spa-aplikacijo"><i class="fa fa-check"></i><b>9.5</b> Zamenjava strežniške aplikacije s SPA aplikacijo</a>
+<ul>
+<li class="chapter" data-level="9.5.1" data-path="Angular-SPA.html"><a href="Angular-SPA.html#preusmeritev-zahtev-na-angular-spa"><i class="fa fa-check"></i><b>9.5.1</b> Preusmeritev zahtev na Angular SPA</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="Angular-SPA.html"><a href="Angular-SPA.html#dodatni-gradniki-angular-aplikacije"><i class="fa fa-check"></i><b>9.6</b> Dodatni gradniki Angular aplikacije</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="Avtentikacija.html"><a href="Avtentikacija.html"><i class="fa fa-check"></i><b>10</b> <span class="sklop4 oznaka">P4.3</span> Preverjanje istovetnosti uporabnika</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="Avtentikacija.html"><a href="Avtentikacija.html#način-avtentikacije-z-uporabo-mean-sklada-tehnologij"><i class="fa fa-check"></i><b>10.1</b> Način avtentikacije z uporabo MEAN sklada tehnologij</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="Avtentikacija.html"><a href="Avtentikacija.html#klasični-pristop-avtentikacije-pri-strežniški-aplikaciji"><i class="fa fa-check"></i><b>10.1.1</b> Klasični pristop avtentikacije pri strežniški aplikaciji</a></li>
+<li class="chapter" data-level="10.1.2" data-path="Avtentikacija.html"><a href="Avtentikacija.html#avtentikacija-z-mean-skladom-tehnologij"><i class="fa fa-check"></i><b>10.1.2</b> Avtentikacija z MEAN skladom tehnologij</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="Avtentikacija.html"><a href="Avtentikacija.html#kreiranje-sheme-uporabnikov-v-mongodb"><i class="fa fa-check"></i><b>10.2</b> Kreiranje sheme uporabnikov v MongoDB</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="Avtentikacija.html"><a href="Avtentikacija.html#enosmerno-šifriranje-gesel"><i class="fa fa-check"></i><b>10.2.1</b> Enosmerno šifriranje gesel</a></li>
+<li class="chapter" data-level="10.2.2" data-path="Avtentikacija.html"><a href="Avtentikacija.html#Kreiranje-sheme-z-Mongoose"><i class="fa fa-check"></i><b>10.2.2</b> Kreiranje sheme z Mongoose</a></li>
+<li class="chapter" data-level="10.2.3" data-path="Avtentikacija.html"><a href="Avtentikacija.html#šifriranje-uporabniškega-gesla"><i class="fa fa-check"></i><b>10.2.3</b> Šifriranje uporabniškega gesla</a></li>
+<li class="chapter" data-level="10.2.4" data-path="Avtentikacija.html"><a href="Avtentikacija.html#preverjanje-ustreznosti-podanega-gesla"><i class="fa fa-check"></i><b>10.2.4</b> Preverjanje ustreznosti podanega gesla</a></li>
+<li class="chapter" data-level="10.2.5" data-path="Avtentikacija.html"><a href="Avtentikacija.html#generiranje-json-spletnega-žetona-jwt"><i class="fa fa-check"></i><b>10.2.5</b> Generiranje JSON spletnega žetona (JWT)</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="Avtentikacija.html"><a href="Avtentikacija.html#Priprava-API-ja-za-avtentikacijo"><i class="fa fa-check"></i><b>10.3</b> Priprava API-ja za avtentikacijo</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="Avtentikacija.html"><a href="Avtentikacija.html#namestitev-in-konfiguracija-passporta"><i class="fa fa-check"></i><b>10.3.1</b> Namestitev in konfiguracija Passporta</a></li>
+<li class="chapter" data-level="10.3.2" data-path="Avtentikacija.html"><a href="Avtentikacija.html#kreiranje-api-dostopne-točke-in-vračanje-json-spletnih-žetonov-jwt"><i class="fa fa-check"></i><b>10.3.2</b> Kreiranje API dostopne točke in vračanje JSON spletnih žetonov (JWT)</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="Avtentikacija.html"><a href="Avtentikacija.html#Varnostna-zascita-izbranih-API-dostopnih-tock"><i class="fa fa-check"></i><b>10.4</b> Varnostna zaščita izbranih API dostopnih točk</a>
+<ul>
+<li class="chapter" data-level="10.4.1" data-path="Avtentikacija.html"><a href="Avtentikacija.html#dodajanje-vmesne-avtentikacijske-ravni-pri-express-usmerjanju"><i class="fa fa-check"></i><b>10.4.1</b> Dodajanje vmesne avtentikacijske ravni pri Express usmerjanju</a></li>
+<li class="chapter" data-level="10.4.2" data-path="Avtentikacija.html"><a href="Avtentikacija.html#uporaba-informacij-iz-jwt-v-express-krmilniku"><i class="fa fa-check"></i><b>10.4.2</b> Uporaba informacij iz JWT v Express krmilniku</a></li>
+<li class="chapter" data-level="10.4.3" data-path="Avtentikacija.html"><a href="Avtentikacija.html#avtorizacija-azuriranje"><i class="fa fa-check"></i><b>10.4.3</b> Avtorizacija pri ažuriranju komentarja</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="Avtentikacija.html"><a href="Avtentikacija.html#Priprava-storitve-avtentikacije-v-Angular"><i class="fa fa-check"></i><b>10.5</b> Priprava storitve avtentikacije v Angular</a>
+<ul>
+<li class="chapter" data-level="10.5.1" data-path="Avtentikacija.html"><a href="Avtentikacija.html#obvladovanje-seje-uporabnika-v-angular"><i class="fa fa-check"></i><b>10.5.1</b> Obvladovanje seje uporabnika v Angular</a></li>
+<li class="chapter" data-level="10.5.2" data-path="Avtentikacija.html"><a href="Avtentikacija.html#omogočanje-registracije-prijave-in-odjave-uporabnikov"><i class="fa fa-check"></i><b>10.5.2</b> Omogočanje registracije, prijave in odjave uporabnikov</a></li>
+<li class="chapter" data-level="10.5.3" data-path="Avtentikacija.html"><a href="Avtentikacija.html#uporaba-podatkov-iz-jwt-v-angular-storitvi"><i class="fa fa-check"></i><b>10.5.3</b> Uporaba podatkov iz JWT v Angular storitvi</a></li>
+</ul></li>
+<li class="chapter" data-level="10.6" data-path="Avtentikacija.html"><a href="Avtentikacija.html#Priprava-strani-za-registracijo-in-prijavo-uporabnika"><i class="fa fa-check"></i><b>10.6</b> Priprava strani za registracijo in prijavo uporabnika</a>
+<ul>
+<li class="chapter" data-level="10.6.1" data-path="Avtentikacija.html"><a href="Avtentikacija.html#priprava-strani-za-registracijo"><i class="fa fa-check"></i><b>10.6.1</b> Priprava strani za registracijo</a></li>
+<li class="chapter" data-level="10.6.2" data-path="Avtentikacija.html"><a href="Avtentikacija.html#priprava-strani-za-prijavo"><i class="fa fa-check"></i><b>10.6.2</b> Priprava strani za prijavo</a></li>
+</ul></li>
+<li class="chapter" data-level="10.7" data-path="Avtentikacija.html"><a href="Avtentikacija.html#uporaba-avtentikacije-v-angular-aplikaciji"><i class="fa fa-check"></i><b>10.7</b> Uporaba avtentikacije v Angular aplikaciji</a>
+<ul>
+<li class="chapter" data-level="10.7.1" data-path="Avtentikacija.html"><a href="Avtentikacija.html#posodobitev-navigacije"><i class="fa fa-check"></i><b>10.7.1</b> Posodobitev navigacije</a></li>
+<li class="chapter" data-level="10.7.2" data-path="Avtentikacija.html"><a href="Avtentikacija.html#podpora-zgodovini-brskanja"><i class="fa fa-check"></i><b>10.7.2</b> Podpora zgodovini brskanja</a></li>
+<li class="chapter" data-level="10.7.3" data-path="Avtentikacija.html"><a href="Avtentikacija.html#dodajanje-uporabnika-v-komentar"><i class="fa fa-check"></i><b>10.7.3</b> Dodajanje uporabniških podatkov v komentar</a></li>
+<li class="chapter" data-level="10.7.4" data-path="Avtentikacija.html"><a href="Avtentikacija.html#brisanje-lastnih-komentarjev"><i class="fa fa-check"></i><b>10.7.4</b> Brisanje lastnih komentarjev</a></li>
+</ul></li>
+<li class="chapter" data-level="10.8" data-path="Avtentikacija.html"><a href="Avtentikacija.html#nastavitve-v-brskalniku"><i class="fa fa-check"></i><b>10.8</b> Shranjevanje uporabniških nastavitev v brskalniku</a></li>
+<li class="chapter" data-level="10.9" data-path="Avtentikacija.html"><a href="Avtentikacija.html#auth-guard"><i class="fa fa-check"></i><b>10.9</b> Auth Guard</a>
+<ul>
+<li class="chapter" data-level="10.9.1" data-path="Avtentikacija.html"><a href="Avtentikacija.html#vrste"><i class="fa fa-check"></i><b>10.9.1</b> Vrste</a></li>
+<li class="chapter" data-level="10.9.2" data-path="Avtentikacija.html"><a href="Avtentikacija.html#canRegister"><i class="fa fa-check"></i><b>10.9.2</b> Onemogočenje registracije prijavljenim uporabnikom</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>V sklop: Decentralizirane aplikacije in veriga blokov</b></span></li>
+<li class="chapter" data-level="11" data-path="DApps-pametne-pogodbe.html"><a href="DApps-pametne-pogodbe.html"><i class="fa fa-check"></i><b>11</b> <span class="sklop5 oznaka">P5.1</span> DApps, pametne pogodbe in Solidity</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="DApps-pametne-pogodbe.html"><a href="DApps-pametne-pogodbe.html#decentralizirane-aplikacije"><i class="fa fa-check"></i><b>11.1</b> Decentralizirane aplikacije</a>
+<ul>
+<li class="chapter" data-level="11.1.1" data-path="DApps-pametne-pogodbe.html"><a href="DApps-pametne-pogodbe.html#kaj-je-decentralizirana-aplikacija-dapp"><i class="fa fa-check"></i><b>11.1.1</b> Kaj je decentralizirana aplikacija (DApp)?</a></li>
+<li class="chapter" data-level="11.1.2" data-path="DApps-pametne-pogodbe.html"><a href="DApps-pametne-pogodbe.html#omrežje-ethereum"><i class="fa fa-check"></i><b>11.1.2</b> Omrežje Ethereum</a></li>
+<li class="chapter" data-level="11.1.3" data-path="DApps-pametne-pogodbe.html"><a href="DApps-pametne-pogodbe.html#terminologija-dapp"><i class="fa fa-check"></i><b>11.1.3</b> Terminologija DApp</a></li>
+<li class="chapter" data-level="11.1.4" data-path="DApps-pametne-pogodbe.html"><a href="DApps-pametne-pogodbe.html#decentralizirane-in-porazdeljene-aplikacije"><i class="fa fa-check"></i><b>11.1.4</b> Decentralizirane in porazdeljene aplikacije</a></li>
+<li class="chapter" data-level="11.1.5" data-path="DApps-pametne-pogodbe.html"><a href="DApps-pametne-pogodbe.html#primeri-dobrih-praks"><i class="fa fa-check"></i><b>11.1.5</b> Primeri dobrih praks</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="DApps-pametne-pogodbe.html"><a href="DApps-pametne-pogodbe.html#veriga-blokov"><i class="fa fa-check"></i><b>11.2</b> Veriga blokov</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="DApps-pametne-pogodbe.html"><a href="DApps-pametne-pogodbe.html#sklad-tehnologij-za-podporo-dapp"><i class="fa fa-check"></i><b>11.2.1</b> Sklad tehnologij za podporo DApp</a></li>
+<li class="chapter" data-level="11.2.2" data-path="DApps-pametne-pogodbe.html"><a href="DApps-pametne-pogodbe.html#podrobnosti-vozlišča-ethereum"><i class="fa fa-check"></i><b>11.2.2</b> Podrobnosti vozlišča Ethereum</a></li>
+<li class="chapter" data-level="11.2.3" data-path="DApps-pametne-pogodbe.html"><a href="DApps-pametne-pogodbe.html#življenjski-cikel-transakcije"><i class="fa fa-check"></i><b>11.2.3</b> Življenjski cikel transakcije</a></li>
+<li class="chapter" data-level="11.2.4" data-path="DApps-pametne-pogodbe.html"><a href="DApps-pametne-pogodbe.html#razvijalski-pogled-na-postavitev-pametne-pogodbe"><i class="fa fa-check"></i><b>11.2.4</b> Razvijalski pogled na postavitev pametne pogodbe</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="DApps-pametne-pogodbe.html"><a href="DApps-pametne-pogodbe.html#platforma-ethereum"><i class="fa fa-check"></i><b>11.3</b> Platforma Ethereum</a>
+<ul>
+<li class="chapter" data-level="11.3.1" data-path="DApps-pametne-pogodbe.html"><a href="DApps-pametne-pogodbe.html#pametne-pogodbe-kot-osnova-dapp"><i class="fa fa-check"></i><b>11.3.1</b> Pametne pogodbe kot osnova DApp</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="DApps-pametne-pogodbe.html"><a href="DApps-pametne-pogodbe.html#programiranje-pametnih-pogodb-s-solidity"><i class="fa fa-check"></i><b>11.4</b> Programiranje pametnih pogodb s Solidity</a>
+<ul>
+<li class="chapter" data-level="11.4.1" data-path="DApps-pametne-pogodbe.html"><a href="DApps-pametne-pogodbe.html#Struktura-pogodbe"><i class="fa fa-check"></i><b>11.4.1</b> Struktura pogodbe</a></li>
+<li class="chapter" data-level="11.4.2" data-path="DApps-pametne-pogodbe.html"><a href="DApps-pametne-pogodbe.html#razvoj-enostavne-pogodbe"><i class="fa fa-check"></i><b>11.4.2</b> Razvoj enostavne pogodbe</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="DApps-pametne-pogodbe.html"><a href="DApps-pametne-pogodbe.html#razvoj-kompleksnih-pametnih-pogodb"><i class="fa fa-check"></i><b>11.5</b> Razvoj kompleksnih pametnih pogodb</a>
+<ul>
+<li class="chapter" data-level="11.5.1" data-path="DApps-pametne-pogodbe.html"><a href="DApps-pametne-pogodbe.html#spremenljivke-stanja"><i class="fa fa-check"></i><b>11.5.1</b> Spremenljivke stanja</a></li>
+<li class="chapter" data-level="11.5.2" data-path="DApps-pametne-pogodbe.html"><a href="DApps-pametne-pogodbe.html#konstruktor"><i class="fa fa-check"></i><b>11.5.2</b> Konstruktor</a></li>
+<li class="chapter" data-level="11.5.3" data-path="DApps-pametne-pogodbe.html"><a href="DApps-pametne-pogodbe.html#funkcije-za-podporo-množični-prodaji"><i class="fa fa-check"></i><b>11.5.3</b> Funkcije za podporo množični prodaji</a></li>
+<li class="chapter" data-level="11.5.4" data-path="DApps-pametne-pogodbe.html"><a href="DApps-pametne-pogodbe.html#testiranje-množične-prodaje"><i class="fa fa-check"></i><b>11.5.4</b> Testiranje množične prodaje</a></li>
+<li class="chapter" data-level="11.5.5" data-path="DApps-pametne-pogodbe.html"><a href="DApps-pametne-pogodbe.html#večkratno-dedovanje"><i class="fa fa-check"></i><b>11.5.5</b> Večkratno dedovanje</a></li>
+</ul></li>
+<li class="chapter" data-level="11.6" data-path="DApps-pametne-pogodbe.html"><a href="DApps-pametne-pogodbe.html#objektno-usmerjene-lastnosti-pametnih-pogodb"><i class="fa fa-check"></i><b>11.6</b> Objektno usmerjene lastnosti pametnih pogodb</a>
+<ul>
+<li class="chapter" data-level="11.6.1" data-path="DApps-pametne-pogodbe.html"><a href="DApps-pametne-pogodbe.html#dedovanje"><i class="fa fa-check"></i><b>11.6.1</b> Dedovanje</a></li>
+<li class="chapter" data-level="11.6.2" data-path="DApps-pametne-pogodbe.html"><a href="DApps-pametne-pogodbe.html#abstraktne-pogodbe"><i class="fa fa-check"></i><b>11.6.2</b> Abstraktne pogodbe</a></li>
+<li class="chapter" data-level="11.6.3" data-path="DApps-pametne-pogodbe.html"><a href="DApps-pametne-pogodbe.html#vmesniki"><i class="fa fa-check"></i><b>11.6.3</b> Vmesniki</a></li>
+<li class="chapter" data-level="11.6.4" data-path="DApps-pametne-pogodbe.html"><a href="DApps-pametne-pogodbe.html#knjižnice"><i class="fa fa-check"></i><b>11.6.4</b> Knjižnice</a></li>
+<li class="chapter" data-level="11.6.5" data-path="DApps-pametne-pogodbe.html"><a href="DApps-pametne-pogodbe.html#skladnost-s-standardom-erc20"><i class="fa fa-check"></i><b>11.6.5</b> Skladnost s standardom <code>ERC20</code></a></li>
+</ul></li>
+<li class="chapter" data-level="11.7" data-path="DApps-pametne-pogodbe.html"><a href="DApps-pametne-pogodbe.html#ekosistem-ethereum"><i class="fa fa-check"></i><b>11.7</b> Ekosistem Ethereum</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="LP2.html"><a href="LP2.html"><i class="fa fa-check"></i><b>12</b> <span class="sklop5 oznaka">2. LP</span> Decentralizirana aplikacija na verigi blokov</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="LP2.html"><a href="LP2.html#pravila-zahteve-in-omejitve-1"><i class="fa fa-check"></i><b>12.1</b> Pravila, zahteve in omejitve</a></li>
+<li class="chapter" data-level="12.2" data-path="LP2.html"><a href="LP2.html#kriteriji-vrednotenja-1"><i class="fa fa-check"></i><b>12.2</b> Kriteriji vrednotenja</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="Truffle-Web3.html"><a href="Truffle-Web3.html"><i class="fa fa-check"></i><b>13</b> <span class="sklop5 oznaka">P5.2</span> Truffle in Web3</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="Truffle-Web3.html"><a href="Truffle-Web3.html#izdelava-decentralizirane-aplikacije"><i class="fa fa-check"></i><b>13.1</b> Izdelava decentralizirane aplikacije</a>
+<ul>
+<li class="chapter" data-level="13.1.1" data-path="Truffle-Web3.html"><a href="Truffle-Web3.html#opredelitev-zahtev-decentralizirane-aplikacije-za-glasovanje"><i class="fa fa-check"></i><b>13.1.1</b> Opredelitev zahtev decentralizirane aplikacije za glasovanje</a></li>
+<li class="chapter" data-level="13.1.2" data-path="Truffle-Web3.html"><a href="Truffle-Web3.html#razvojni-načrt"><i class="fa fa-check"></i><b>13.1.2</b> Razvojni načrt</a></li>
+<li class="chapter" data-level="13.1.3" data-path="Truffle-Web3.html"><a href="Truffle-Web3.html#Truffle-projekt"><i class="fa fa-check"></i><b>13.1.3</b> Truffle projekt</a></li>
+<li class="chapter" data-level="13.1.4" data-path="Truffle-Web3.html"><a href="Truffle-Web3.html#razvoj-pametne-pogodbe"><i class="fa fa-check"></i><b>13.1.4</b> Razvoj pametne pogodbe</a></li>
+<li class="chapter" data-level="13.1.5" data-path="Truffle-Web3.html"><a href="Truffle-Web3.html#lastna-privatna-veriga-blokov"><i class="fa fa-check"></i><b>13.1.5</b> Lastna privatna veriga blokov</a></li>
+<li class="chapter" data-level="13.1.6" data-path="Truffle-Web3.html"><a href="Truffle-Web3.html#prevajanje-in-postavitev-pametne-pogodbe"><i class="fa fa-check"></i><b>13.1.6</b> Prevajanje in postavitev pametne pogodbe</a></li>
+<li class="chapter" data-level="13.1.7" data-path="Truffle-Web3.html"><a href="Truffle-Web3.html#testi-enot"><i class="fa fa-check"></i><b>13.1.7</b> Testi enot</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="Truffle-Web3.html"><a href="Truffle-Web3.html#uporabniški-vmesnik"><i class="fa fa-check"></i><b>13.2</b> Uporabniški vmesnik</a>
+<ul>
+<li class="chapter" data-level="13.2.1" data-path="Truffle-Web3.html"><a href="Truffle-Web3.html#priprava-odvisnosti"><i class="fa fa-check"></i><b>13.2.1</b> Priprava odvisnosti</a></li>
+<li class="chapter" data-level="13.2.2" data-path="Truffle-Web3.html"><a href="Truffle-Web3.html#spletna-stran"><i class="fa fa-check"></i><b>13.2.2</b> Spletna stran</a></li>
+<li class="chapter" data-level="13.2.3" data-path="Truffle-Web3.html"><a href="Truffle-Web3.html#web3-aplikacija-kot-angular-komponenta"><i class="fa fa-check"></i><b>13.2.3</b> Web3 aplikacija kot Angular komponenta</a></li>
+<li class="chapter" data-level="13.2.4" data-path="Truffle-Web3.html"><a href="Truffle-Web3.html#opredelitev-izgleda"><i class="fa fa-check"></i><b>13.2.4</b> Opredelitev izgleda</a></li>
+<li class="chapter" data-level="13.2.5" data-path="Truffle-Web3.html"><a href="Truffle-Web3.html#povezava-na-verigo-blokov"><i class="fa fa-check"></i><b>13.2.5</b> Povezava na verigo blokov</a></li>
+<li class="chapter" data-level="13.2.6" data-path="Truffle-Web3.html"><a href="Truffle-Web3.html#podpora-funkcionalnostim-neregistriranega-volivca"><i class="fa fa-check"></i><b>13.2.6</b> Podpora funkcionalnostim neregistriranega volivca</a></li>
+<li class="chapter" data-level="13.2.7" data-path="Truffle-Web3.html"><a href="Truffle-Web3.html#podpora-funkcionalnostim-registriranega-volivca"><i class="fa fa-check"></i><b>13.2.7</b> Podpora funkcionalnostim registriranega volivca</a></li>
+<li class="chapter" data-level="13.2.8" data-path="Truffle-Web3.html"><a href="Truffle-Web3.html#podpora-funkcionalnostim-skrbnika"><i class="fa fa-check"></i><b>13.2.8</b> Podpora funkcionalnostim skrbnika</a></li>
+<li class="chapter" data-level="13.2.9" data-path="Truffle-Web3.html"><a href="Truffle-Web3.html#obvladovanje-dogodkov-v-okviru-dapp"><i class="fa fa-check"></i><b>13.2.9</b> Obvladovanje dogodkov v okviru DApp</a></li>
+</ul></li>
+<li class="chapter" data-level="13.3" data-path="Truffle-Web3.html"><a href="Truffle-Web3.html#testiranje-decentralizirane-aplikacije-za-glasovanje"><i class="fa fa-check"></i><b>13.3</b> Testiranje decentralizirane aplikacije za glasovanje</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="Truffle-Web3.html"><a href="Truffle-Web3.html#zagon-osebne-verige-blokov-ganache"><i class="fa fa-check"></i><b>13.3.1</b> Zagon osebne verige blokov Ganache</a></li>
+<li class="chapter" data-level="13.3.2" data-path="Truffle-Web3.html"><a href="Truffle-Web3.html#dostop-do-racunov-metamask"><i class="fa fa-check"></i><b>13.3.2</b> Dostop do računov preko MetaMask</a></li>
+<li class="chapter" data-level="13.3.3" data-path="Truffle-Web3.html"><a href="Truffle-Web3.html#postavitev-pametne-pogodbe-na-verigo-blokov"><i class="fa fa-check"></i><b>13.3.3</b> Postavitev pametne pogodbe na verigo blokov</a></li>
+<li class="chapter" data-level="13.3.4" data-path="Truffle-Web3.html"><a href="Truffle-Web3.html#povezovanje-metamask-z-dapp"><i class="fa fa-check"></i><b>13.3.4</b> Povezovanje MetaMask z DApp</a></li>
+<li class="chapter" data-level="13.3.5" data-path="Truffle-Web3.html"><a href="Truffle-Web3.html#faza-registracije-volivcev"><i class="fa fa-check"></i><b>13.3.5</b> Faza registracije volivcev</a></li>
+<li class="chapter" data-level="13.3.6" data-path="Truffle-Web3.html"><a href="Truffle-Web3.html#faza-začetka-sprejemanja-predlogov"><i class="fa fa-check"></i><b>13.3.6</b> Faza začetka sprejemanja predlogov</a></li>
+<li class="chapter" data-level="13.3.7" data-path="Truffle-Web3.html"><a href="Truffle-Web3.html#faza-konca-sprejemanja-predlogov"><i class="fa fa-check"></i><b>13.3.7</b> Faza konca sprejemanja predlogov</a></li>
+<li class="chapter" data-level="13.3.8" data-path="Truffle-Web3.html"><a href="Truffle-Web3.html#faza-začetka-glasovanja"><i class="fa fa-check"></i><b>13.3.8</b> Faza začetka glasovanja</a></li>
+<li class="chapter" data-level="13.3.9" data-path="Truffle-Web3.html"><a href="Truffle-Web3.html#faza-konca-glasovanja"><i class="fa fa-check"></i><b>13.3.9</b> Faza konca glasovanja</a></li>
+<li class="chapter" data-level="13.3.10" data-path="Truffle-Web3.html"><a href="Truffle-Web3.html#zaključna-faza-preštetih-glasov"><i class="fa fa-check"></i><b>13.3.10</b> Zaključna faza preštetih glasov</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="Truffle-Web3.html"><a href="Truffle-Web3.html#varna-postavitev"><i class="fa fa-check"></i><b>13.4</b> Postavitev pametne pogodbe na zaščiteno verigo blokov</a></li>
+<li class="chapter" data-level="13.5" data-path="Truffle-Web3.html"><a href="Truffle-Web3.html#postavitev-pametne-pogodbe-s-pomočjo-metamask"><i class="fa fa-check"></i><b>13.5</b> Postavitev pametne pogodbe s pomočjo MetaMask</a></li>
+</ul></li>
+<li class="part"><span><b>VI sklop: Dodatne funkcionalnosti</b></span></li>
+<li class="chapter" data-level="14" data-path="Varnost-testiranje-PWA.html"><a href="Varnost-testiranje-PWA.html"><i class="fa fa-check"></i><b>14</b> <span class="sklop6 oznaka">P6.1</span> Varnost spletnih aplikacij, testiranje in progresivne spletne aplikacije</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="Varnost-testiranje-PWA.html"><a href="Varnost-testiranje-PWA.html#odprtokodni-projekt-varnosti-spletnih-aplikacij-owasp"><i class="fa fa-check"></i><b>14.1</b> Odprtokodni projekt varnosti spletnih aplikacij OWASP</a>
+<ul>
+<li class="chapter" data-level="14.1.1" data-path="Varnost-testiranje-PWA.html"><a href="Varnost-testiranje-PWA.html#uvod-2"><i class="fa fa-check"></i><b>14.1.1</b> Uvod</a></li>
+<li class="chapter" data-level="14.1.2" data-path="Varnost-testiranje-PWA.html"><a href="Varnost-testiranje-PWA.html#trend-največjih-varnostnih-tveganj-spletnih-aplikacij"><i class="fa fa-check"></i><b>14.1.2</b> Trend največjih varnostnih tveganj spletnih aplikacij</a></li>
+<li class="chapter" data-level="14.1.3" data-path="Varnost-testiranje-PWA.html"><a href="Varnost-testiranje-PWA.html#ovrednotenje-varnostnih-tveganj-aplikacije"><i class="fa fa-check"></i><b>14.1.3</b> Ovrednotenje varnostnih tveganj aplikacije</a></li>
+<li class="chapter" data-level="14.1.4" data-path="Varnost-testiranje-PWA.html"><a href="Varnost-testiranje-PWA.html#A1-2021"><i class="fa fa-check"></i><b>14.1.4</b> A1:2021 - Neustrezen nadzor dostopa</a></li>
+<li class="chapter" data-level="14.1.5" data-path="Varnost-testiranje-PWA.html"><a href="Varnost-testiranje-PWA.html#A2-2021"><i class="fa fa-check"></i><b>14.1.5</b> A2:2021 - Kriptografske napake</a></li>
+<li class="chapter" data-level="14.1.6" data-path="Varnost-testiranje-PWA.html"><a href="Varnost-testiranje-PWA.html#A3-2021"><i class="fa fa-check"></i><b>14.1.6</b> A3:2021 - Vrivanje zlonamerne kode</a></li>
+<li class="chapter" data-level="14.1.7" data-path="Varnost-testiranje-PWA.html"><a href="Varnost-testiranje-PWA.html#A4-2021"><i class="fa fa-check"></i><b>14.1.7</b> A4:2021 - Nevaren načrt</a></li>
+<li class="chapter" data-level="14.1.8" data-path="Varnost-testiranje-PWA.html"><a href="Varnost-testiranje-PWA.html#A5-2021"><i class="fa fa-check"></i><b>14.1.8</b> A5:2021 - Napačna varnostna konfiguracija</a></li>
+<li class="chapter" data-level="14.1.9" data-path="Varnost-testiranje-PWA.html"><a href="Varnost-testiranje-PWA.html#A6-2021"><i class="fa fa-check"></i><b>14.1.9</b> A6:2021 - Ranljive in zastarele komponente</a></li>
+<li class="chapter" data-level="14.1.10" data-path="Varnost-testiranje-PWA.html"><a href="Varnost-testiranje-PWA.html#A7-2021"><i class="fa fa-check"></i><b>14.1.10</b> A7:2021 - Napake pri identifikaciji in avtentikaciji</a></li>
+<li class="chapter" data-level="14.1.11" data-path="Varnost-testiranje-PWA.html"><a href="Varnost-testiranje-PWA.html#A8-2021"><i class="fa fa-check"></i><b>14.1.11</b> A8:2021 - Napake v programski opremi in integriteti podatkov</a></li>
+<li class="chapter" data-level="14.1.12" data-path="Varnost-testiranje-PWA.html"><a href="Varnost-testiranje-PWA.html#A9-2021"><i class="fa fa-check"></i><b>14.1.12</b> A9:2021 - Varnostno beleženje in spremljanje napak</a></li>
+<li class="chapter" data-level="14.1.13" data-path="Varnost-testiranje-PWA.html"><a href="Varnost-testiranje-PWA.html#A10-2021"><i class="fa fa-check"></i><b>14.1.13</b> A10:2021 - Ponarejanje zahtev na strani strežnika (SSRF)</a></li>
+<li class="chapter" data-level="14.1.14" data-path="Varnost-testiranje-PWA.html"><a href="Varnost-testiranje-PWA.html#priporočila-za-razvijalce"><i class="fa fa-check"></i><b>14.1.14</b> Priporočila za razvijalce</a></li>
+</ul></li>
+<li class="chapter" data-level="14.2" data-path="Varnost-testiranje-PWA.html"><a href="Varnost-testiranje-PWA.html#osnovni-varnostni-pregled-demo-aplikacije-z-owasp-zap"><i class="fa fa-check"></i><b>14.2</b> Osnovni varnostni pregled Demo aplikacije z OWASP ZAP</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="Varnost-testiranje-PWA.html"><a href="Varnost-testiranje-PWA.html#priprava-demo-aplikacije-v-lokalnem-okolju"><i class="fa fa-check"></i><b>14.2.1</b> Priprava Demo aplikacije v lokalnem okolju</a></li>
+<li class="chapter" data-level="14.2.2" data-path="Varnost-testiranje-PWA.html"><a href="Varnost-testiranje-PWA.html#podpora-ssl"><i class="fa fa-check"></i><b>14.2.2</b> Podpora SSL</a></li>
+<li class="chapter" data-level="14.2.3" data-path="Varnost-testiranje-PWA.html"><a href="Varnost-testiranje-PWA.html#zagon-aplikacije"><i class="fa fa-check"></i><b>14.2.3</b> Zagon aplikacije</a></li>
+<li class="chapter" data-level="14.2.4" data-path="Varnost-testiranje-PWA.html"><a href="Varnost-testiranje-PWA.html#konfiguracija-orodja-owasp-zap"><i class="fa fa-check"></i><b>14.2.4</b> Konfiguracija orodja OWASP ZAP</a></li>
+<li class="chapter" data-level="14.2.5" data-path="Varnost-testiranje-PWA.html"><a href="Varnost-testiranje-PWA.html#tezave-http-odgovori"><i class="fa fa-check"></i><b>14.2.5</b> Odprava težav s HTTP odgovori</a></li>
+<li class="chapter" data-level="14.2.6" data-path="Varnost-testiranje-PWA.html"><a href="Varnost-testiranje-PWA.html#tezave-z-registracijo-in-prijavo"><i class="fa fa-check"></i><b>14.2.6</b> Odprava težav z registracijo in prijavo</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="Varnost-testiranje-PWA.html"><a href="Varnost-testiranje-PWA.html#osnovni-funkcionalni-testi-aplikacije-demo-s-selenium"><i class="fa fa-check"></i><b>14.3</b> Osnovni funkcionalni testi aplikacije Demo s Selenium</a></li>
+<li class="chapter" data-level="14.4" data-path="Varnost-testiranje-PWA.html"><a href="Varnost-testiranje-PWA.html#Progresivne-spletne-aplikacije"><i class="fa fa-check"></i><b>14.4</b> Progresivne spletne aplikacije</a>
+<ul>
+<li class="chapter" data-level="14.4.1" data-path="Varnost-testiranje-PWA.html"><a href="Varnost-testiranje-PWA.html#uvod-3"><i class="fa fa-check"></i><b>14.4.1</b> Uvod</a></li>
+<li class="chapter" data-level="14.4.2" data-path="Varnost-testiranje-PWA.html"><a href="Varnost-testiranje-PWA.html#Lighthouse"><i class="fa fa-check"></i><b>14.4.2</b> Pregled obstoječe aplikacije s pomočjo Lighthouse</a></li>
+<li class="chapter" data-level="14.4.3" data-path="Varnost-testiranje-PWA.html"><a href="Varnost-testiranje-PWA.html#nadgradnja-angular"><i class="fa fa-check"></i><b>14.4.3</b> Nadgradnja Angular</a></li>
+<li class="chapter" data-level="14.4.4" data-path="Varnost-testiranje-PWA.html"><a href="Varnost-testiranje-PWA.html#vključitev-podpore-za-pwa"><i class="fa fa-check"></i><b>14.4.4</b> Vključitev podpore za PWA</a></li>
+<li class="chapter" data-level="14.4.5" data-path="Varnost-testiranje-PWA.html"><a href="Varnost-testiranje-PWA.html#Brskanje-brez-povezave"><i class="fa fa-check"></i><b>14.4.5</b> Brskanje brez povezave</a></li>
+<li class="chapter" data-level="14.4.6" data-path="Varnost-testiranje-PWA.html"><a href="Varnost-testiranje-PWA.html#končno-testiranje"><i class="fa fa-check"></i><b>14.4.6</b> Končno testiranje</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="literatura.html"><a href="literatura.html"><i class="fa fa-check"></i>Literatura</a></li>
+<li class="divider"></li>
+<li><a href="https://ucilnica.fri.uni-lj.si/course/view.php?id=74">eUčilnica</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="index.html">Spletno programiranje 2023/2024</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="LP2" class="section level1 hasAnchor" number="12">
+<h1><span class="header-section-number">Poglavje 12</span> <span class="sklop5 oznaka">2. LP</span> Decentralizirana aplikacija na verigi blokov<a href="LP2.html#LP2" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div class="vrstica">
+<img src="assets/img/ninja/ninja_02_shuriken_attack_right.png">
+<h3>
+<span class="sklop5 oznaka">2. LP</span>
+</h3>
+</div>
+<div id="pravila-zahteve-in-omejitve-1" class="section level2 hasAnchor" number="12.1">
+<h2><span class="header-section-number">12.1</span> Pravila, zahteve in omejitve<a href="LP2.html#pravila-zahteve-in-omejitve-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>V tem delu lastnega projekta <span class="sklop5">2. LP</span> boste razvili <strong>decentralizirano aplikacijo (DApp)</strong>, ki bo povezana z verigo blokov in bo smiselno vključena v vašo obstoječo aplikacijo, ki ste jo razvili v okviru <span class="sklop4">1. LP</span>.</p>
+<p>Z vidika <strong>funkcionalnih zahtev</strong> je treba eno ali več zaslonskih mask nadgraditi tako, da bo omogočala interakcijo z verigo blokov, in sicer:</p>
+<ul>
+<li>izbrana tehnologija s podporo pametnim pogodbam je izključno <strong>veriga blokov</strong> <a href="https://ethereum.org/en/"><i class="fa-brands fa-ethereum"></i><strong>Ethereum</strong></a> z uporabo kriptovalute <strong>Ether</strong> ali lastnih kriptožetonov standarda <a href="https://ethereum.org/en/developers/docs/standards/tokens/erc-20/"><i class="fa-brands fa-ethereum"></i><strong>ERC-20</strong></a>,</li>
+<li>implementacija DApp naj bo izvedena <strong>na strani odjemalca</strong> preko vtičnika brskalnika <a href="https://metamask.io/"><i class="fa-solid fa-earth-europe"></i><strong>MetaMask</strong></a> in z uporabo knjižnice <a href="https://docs.web3js.org/"><i class="fa-brands fa-node-js"></i><strong>Web3.js</strong></a>,</li>
+<li>Obstoječo podatkovno bazo nadgradite z DApps atributi (npr. naslovi računov, vloge računov, transakcije, rezultati interakcij s pametnimi pogodbami itd.), glede na vašo problemsko domeno, da bo mogoče na praktičnem primeru prikazati izbran primer uporabe.</li>
+<li>DApp naj bo omogočena <strong>za vsaj eno vrsto prijavljenega uporabnika</strong>, kjer se mora račun uporabljene denarnice MetaMask ujemati z naslovom denarnice uporabnika v podatkovnih bazi,
+<ul>
+<li>pri registraciji uporabnika v okviru <span class="sklop4">1. LP</span> shranite tudi njegov naslov denarnice oz. javni ključ,</li>
+</ul></li>
+<li>z uporabo gradnikov <i class="fa-brands fa-ethereum"></i><strong>Solidity</strong> čim bolj odpravite ponavljajoče dele kode in jih ponovno uporabite ter pri tem uporabite <strong>vsaj 1 zunanjo knjižnico</strong>,
+<ul>
+<li>pomagate si lahko z odprtokodno knjižnico pametnih pogodb <a href="https://github.com/OpenZeppelin/openzeppelin-contracts"><i class="fa-brands fa-github"></i>Open Zeppelin</a>,</li>
+</ul></li>
+<li>razvoj <strong>vsaj 1 pametne pogodbe</strong>, kjer bodo vključene <strong>vsaj 2 funkcionalnosti DApps</strong>, npr.:
+<ul>
+<li>implementacija funkcije za <strong>posodobitev vsebine pametne pogodbe z vsaj enim vhodnim podatkom</strong> (npr. zapis podatka, sprememba stanja obstoječih atributov, posodobitev pravic idr.),</li>
+<li>implementacija funkcije za <strong>izvedbo transakcije kriptovalut ali kriptožetonov</strong> s posodobitvijo vsebine pametne pogodbe (npr. pošiljanje sredstev, zamenjava sredstev, glasovanje idr.),</li>
+<li><strong>integracija dogodkov</strong> <em>(angl. events)</em> v vsaj eno funkcijo pametne pogodbe in <strong>implementacija poslušalca dogodka</strong> v okviru knjižnice <i class="fa-brands fa-node-js"></i>Web3.js,</li>
+<li>(za dodatne točke) implementacija funkcije za <strong>branje podatkov izven verige</strong> z uporabo tehnologije <a href="https://chain.link/"><span class="skupaj"><i class="fa-solid fa-earth-europe"></i>ChainLink</span></a>,</li>
+</ul></li>
+<li><strong>osrednji scenarij</strong>, ki ga pametna pogodba podpira, naj bo <strong>v celoti pokrit s testnimi primeri</strong> in implementiran v ogrodju Truffle, kjer je za vsako funkcijo prisoten vsaj 1 pozitiven in 1 negativen test.</li>
+</ul>
+<p>Povzetek funkcionalnih zahtev obeh lastnih projektov je prikazan na sliki <a href="LP2.html#fig:slika-LP2-funkcionalnosti">12.1</a>, kjer se v okviru <span class="sklop5">2. LP</span> osredotočite na uporabo denarnice MetaMask, kjer potrdite dostop do posameznega računa in nato vaša decentralizirana aplikacija s pomočjo <i class="fa-brands fa-node-js"></i>Web3.js knjižnice komunicira z verigo blokov.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:slika-LP2-funkcionalnosti"></span>
+<img src="assets/img/LP_po_delih_small.png" alt="Povzetek funkcionalnih zahtev &lt;span class='sklop4'&gt;1. LP&lt;/span&gt; in &lt;span class='sklop5'&gt;2. LP&lt;/span&gt; &lt;span class='manjse'&gt;([večja slika](./assets/img/LP_po_delih.png))&lt;/span&gt;" width="800" />
+<p class="caption">
+Slika 12.1: Povzetek funkcionalnih zahtev <span class="sklop4">1. LP</span> in <span class="sklop5">2. LP</span> <span class="manjse">(<a href="assets/img/LP_po_delih.png">večja slika</a>)</span>
+</p>
+</div>
+<p>Nalogo boste oddali v elektronski obliki preko <a href="https://ucilnica.fri.uni-lj.si/mod/assign/view.php?id=54308"><i class="fa-regular fa-pen-to-square"></i>spletne učilnice</a> (povezava na zadnjo uveljavitev), sistema <i class="fa-brands fa-github"></i>GitHub in povezave na delujočo aplikacijo. Uporabiti morate isti repozitorij <strong><code>LP-XY</code></strong>, ki ste ga uporabili pri <span class="sklop4">1. LP</span>. v okviru organizacije <a href="https://github.com/sp-2023-2024"><i class="fa-brands fa-github"></i>SP-2023-2024</a>, kjer <code>XY</code> predstavlja zaporedno številko skupine!</p>
+<blockquote>
+<p>Ker nalogo oddajate skupinsko, vam aktivnost na spletni učilnici omogoča, da jo odda poljuben član skupine, tako da ni potrebno naloge oddajati vsem članom skupine.</p>
+</blockquote>
+<p>V repozitoriju lastnega projekta naj bo v datoteki <code>README.md</code> na voljo kratek opis ideje vaše decentralizirane aplikacije in vsi potrebni podatki za zagon na zasebni verigi blokov (npr. vrednosti okoljskih spremenljivk, ki jih je treba nastaviti, kot so javni in privatni ključni testnih računov idr.).</p>
+<p>Pri predmetu boste razvili dva lastna projekta (<span class="sklop4">1. LP</span> in <span class="sklop5">2. LP</span>), kjer ta navodila opisujejo zahteve <span class="sklop5">2. LP</span>. Delež posameznih lastnih projektov h končni oceni sprotne obveznosti lastnega projekta prikazuje naslednja enačba:</p>
+<p><span class="math display">\[\begin{equation}
+\begin{aligned}
+\textbf{Lastni projekt (LP)} = &amp;\ 70\ \% \cdot \textbf{1. LP}\ \color{gray}{\small \text{(dinamična spletna aplikacija na strani strežnika in odjemalca)}}\ + \\
+&amp;\ 30\ \% \cdot \textbf{2. LP}\ \color{gray}{\small \text{(decentralizirana aplikacija na verigi blokov)}}
+\end{aligned}
+\end{equation}\]</span></p>
+</div>
+<div id="kriteriji-vrednotenja-1" class="section level2 hasAnchor" number="12.2">
+<h2><span class="header-section-number">12.2</span> Kriteriji vrednotenja<a href="LP2.html#kriteriji-vrednotenja-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<details>
+<summary>
+<h3 style="display:inline">
+<i class="fa-regular fa-file-lines" style="padding-right:6px"></i>Kriteriji vrednotenja za <span class="sklop5">2. LP</span>
+</h3>
+</summary>
+<ul>
+<li>S pomočjo programskega jezika <i class="fa-brands fa-ethereum"></i>Solidity je <strong>razvita pametna pogodba</strong> za podporo funkcionalnosti aplikacije, ki je skladna z opisom v <code>README.md</code>.</li>
+<li>Pametna pogodba <strong>uporablja abstrakcije</strong> (npr. generalizacijo pogodb, vmesnike ipd.) ter <strong>ponovno uporabne gradnike</strong>.</li>
+<li>Pametna pogodba smiselno uporablja <strong>vsaj 1 zunanjo knjižnico</strong>.</li>
+<li>V okviru DApp na strani odjemalca je prisotna <strong>komunikacija z MetaMask</strong>, ki omogoča avtorizacijo transakcij na izbrani verigi blokov.</li>
+<li>Pametna pogodba je razvita s pomočjo <strong>ogrodja Truffle</strong>, kjer sta prisotna <strong>vsaj 2 testa</strong> (1 pozitiven in 1 negativen) <strong>za vsako funkcijo pogodbe</strong>.</li>
+<li>Komunikacija med DApp in verigo blokov deluje in je podprto s pomočjo <strong>Web3.js na strani odjemalca</strong>. Na voljo so <strong>vse funkcionalnosti pametne pogodbe</strong>.</li>
+</ul>
+</details>
+
+</div>
+</div>
+<script type="text/javascript">
+  $(document).ready(function() {
+    
+    $("a").click(function(e) {
+      if (
+        $(this).has(".fa-solid").length == 1 || 
+        $(this).has(".fa-brands").length == 1 || 
+        $(this).has(".fa-regular").length == 1 || 
+        $(this).has("img.git").length == 1
+      ) {
+        e.preventDefault();
+        window.open($(this).attr("href"), '_blank');
+      }
+    });
+  });
+</script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q6109Y2092"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Q6109Y2092');
+</script>
+<h3><i class="fas fa-globe-europe" style="padding-right:5px"></i>Choose your language</h3>
+
+<p>Students whose mother tongue is not Slovene can choose to <a onclick="loadGoogleTranslate()" class="google-translate-povezava"><i class="fas fa-sync-alt" style="padding-right:3px"></i>translate the contents of the script</a> into the selected language.</p>
+
+<div id="google_translate_element"></div>
+
+<script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+      pageLanguage: 'sl', 
+      includedLanguages: 'en,mk', 
+      layout: google.translate.TranslateElement.InlineLayout.SIMPLE, 
+      multilanguagePage: true
+    }, 'google_translate_element');
+  }
+  
+  function loadGoogleTranslate() {
+    if ($("script[src='//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit']").length == 0) {
+      var googleTranslateScript = document.createElement('script');
+      googleTranslateScript.type = 'text/javascript';
+      googleTranslateScript.async = true;
+      googleTranslateScript.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0] ).appendChild(googleTranslateScript);    
+    }
+  }
+  
+  $(document).ready(function() {
+    // Če gre za administrativno stran, potem skrij obrazec za komentarje
+    $("h1:contains('Administracija'),h1:contains('Komentarji'),h1:contains('Analiza začetnega vprašalnika'),h1:contains('Lastni projekt'),h1:contains('pisni izpit'),h1:contains('Pisni izpiti')").filter(function() {
+      $("h3:contains('Choose your language')").next().hide();
+      $("h3:contains('Choose your language')").hide();
+    });
+  });
+</script>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="DApps-pametne-pogodbe.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="Truffle-Web3.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="assets/lib/gitbook-2.6.7/js/app.min.js"></script>
+<script src="assets/lib/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="assets/lib/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="assets/lib/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="assets/lib/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="assets/lib/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="assets/lib/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="assets/lib/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": {}
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 1
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"toolbar": {
+"position": "fixed"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
